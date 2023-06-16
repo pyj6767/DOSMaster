@@ -48,5 +48,5 @@ Description : DOS Plot Smartly
 
 ## Run dosmaster
 
-
+    $ cd [DOS 계산한 폴더]
     $ dosmaster
