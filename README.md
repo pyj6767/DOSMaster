@@ -3,7 +3,7 @@ Program Name : dosmaster Program(ver.1.0)
 Made by Youngjun Park (yjpark29@postech.ac.kr)
 Inspired by Jaesun Kim
 
-Edit Date : 23/06/15
+Edit Date : 23/06/15 
 
 Description : DOS Plot Smartly
 
