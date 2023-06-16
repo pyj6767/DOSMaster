@@ -17,7 +17,7 @@ Description : DOS Plot Smartly
    4) 복사한 ssh-key를 붙여넣고 key를 등록
    5) 서버에서 다음 명령어를 입력하여, 소스코드 다운로드
    
-         $ git clone git@github.com:pyj6767/VACSS.git
+         $ git clone git@github.com:pyj6767/DOSMaster.git
 
 
 ## Features
