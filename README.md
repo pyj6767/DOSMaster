@@ -34,8 +34,15 @@ Description : DOS Plot Smartly
 8) Find Max Contribution Atom DOS (Not Implemented)
 9) Edit Legend Name (Not Implemented)
 
-## Installation Preparation
+## Requirements
 
+    pip install matplotlib
+    pip install numpy
+    pip install pandas
+    pip install ase
+
+
+## Installation Preparation
 
     $ chmod 774 dosmaster
 
