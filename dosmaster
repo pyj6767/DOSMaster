@@ -21,8 +21,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib.patches import Rectangle
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+from matplotlib._color_data import BASE_COLORS, TABLEAU_COLORS, CSS4_COLORS, XKCD_COLORS
+import ase
 import os.path
 from os import path
+
 
 def StartMessage():
     print("#############################################################################################")
@@ -195,11 +201,6 @@ def print_orbital_list(orbital_list):
         print('{} : {}'.format(i+1, orbital))
         
 #===============================================[get Color list]================================================
-from matplotlib.patches import Rectangle
-import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
-from matplotlib._color_data import BASE_COLORS, TABLEAU_COLORS, CSS4_COLORS, XKCD_COLORS
-
 def get_color_list():
     colors = mcolors.CSS4_COLORS
     # Sort colors by hue, saturation, value and name.
@@ -287,9 +288,6 @@ def python_color_list():
 #===============================================[get Color list]================================================
         
 #==========================================================================================[split_dos]===============================================================================
-import numpy as np
-import ase
-
 ### Class to store DOS data ###
 class DOSData:
     def __init__(self, e_f, dos_values):
