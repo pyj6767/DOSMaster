@@ -36,10 +36,10 @@ Description : DOS Plot Smartly
 
 ## Requirements
 
-    pip install matplotlib
-    pip install numpy
-    pip install pandas
-    pip install ase
+    $ pip install matplotlib
+    $ pip install numpy
+    $ pip install pandas
+    $ pip install ase
 
 
 ## Installation Preparation
