@@ -26,7 +26,9 @@ Description : DOS Plot Smartly
 3) Remove DOS
 4) Edit Graph Style
 5) Plot only Positive/Negative part
+
 ---------------- (Future Version) -------------------
+
 6) DOS sum (Not Implemented)
 7) ISPIN=1 Support (Not Implemented)
 8) Find Max Contribution Atom DOS (Not Implemented)
