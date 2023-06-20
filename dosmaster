@@ -1,9 +1,9 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 #======================================================================================================
-#Script Name : dosmaster Program(ver.1.0)
+#Script Name : dosmaster Program(ver.1.1)
 #Made by Youngjun Park (yjpark29@postech.ac.kr)
 #Inspired by Jaesun Kim
-#Edit Date : 23/06/15
+#Edit Date : 23/06/21
 #======================================================================================================
 #Description : DOS Plot Smartly
 #======================================================================================================
@@ -28,6 +28,7 @@ from matplotlib._color_data import BASE_COLORS, TABLEAU_COLORS, CSS4_COLORS, XKC
 import ase
 import os.path
 from os import path
+import pickle
 
 
 def StartMessage():
@@ -195,6 +196,27 @@ def print_current_DOS(DOS_list, Labellist, graph_config):
 
         print('{:<4} : {:<80} | color : {:<30}'.format(i+1, print_element, graph_config['Color_list'][i]))
     print('==================================================================================================================')
+    
+def get_current_DOS(DOS_list, Labellist, graph_config):
+    dos_column_list=[]
+    for i, d in enumerate(DOS_list):
+        if isinstance(d, list)==True:
+            labeled_d = [Labellist[int(d_temp.split('_')[0])-1]+'('+d_temp.split('_')[1]+')' for d_temp in d]
+            print_element='+'.join(labeled_d)
+
+        else:
+            if d == 'Total DOS_all':
+                print_element='Total_DOS(all)'
+                
+            elif d.split('_')[0] == 'Total DOS' and d.split('_')[1] != 'all':
+                print_element='Total_DOS_{}'.format(d.split('_')[1])
+
+            else:
+                print_element=Labellist[int(d.split('_')[0])-1]+'('+d.split('_')[1]+')'
+        
+        dos_column_list.append(print_element)
+        
+    return dos_column_list
     
 def print_orbital_list(orbital_list):
     for i, orbital in enumerate(orbital_list):
@@ -431,26 +453,37 @@ def PROCAR_Parser(file):
     return orbital_list
 
 def Make_DOS_Dataframe():
-    #0. split_dos 함수 실행
-    dos_data_total, dos_data = split_dos()
+    if path.isfile('./dos_data_total.pkl') == True:
+        with open('./dos_data_total.pkl', 'rb') as f:
+            dos_data_total = pickle.load(f)
+        dos_object_total_dos=dos_data_total[0]
+        dos_object_list=dos_data_total[1]
+        orbital_list=dos_data_total[2]
+    else:
+        #0. split_dos 함수 실행
+        dos_data_total, dos_data = split_dos()
     
-    #1. PROCAR에서 orbital_list 받아오기
-    orbital_list = PROCAR_Parser('./PROCAR')
+        #1. PROCAR에서 orbital_list 받아오기
+        orbital_list = PROCAR_Parser('./PROCAR')
 
-    #2. 2차원 리스트 형태로 변환
-    dos_data_total_list=[[dos_temp.e_f] + dos_temp.dos_values for dos_temp in dos_data_total]
-    dos_object_list=[np.array(dos_object.dos_values) for dos_object in dos_data]
+        #2. 2차원 리스트 형태로 변환
+        dos_data_total_list=[[dos_temp.e_f] + dos_temp.dos_values for dos_temp in dos_data_total]
+        dos_object_list=[np.array(dos_object.dos_values) for dos_object in dos_data]
 
-    column_names = []
-    for ol in orbital_list:
-        column_names.append(ol+'_up')
-        column_names.append(ol+'_down')
-    column_names.insert(0, 'Energy')
+        column_names = []
+        for ol in orbital_list:
+            column_names.append(ol+'_up')
+            column_names.append(ol+'_down')
+        column_names.insert(0, 'Energy')
 
-    #3. dos_data[각각]을 table로 변환하기(df)
-    dos_object_total_dos = pd.DataFrame(dos_data_total_list)
-    dos_object_list=[pd.DataFrame(dos_object, columns=column_names) for dos_object in dos_object_list]
-
+        #3. dos_data[각각]을 table로 변환하기(df)
+        dos_object_total_dos = pd.DataFrame(dos_data_total_list)
+        dos_object_list=[pd.DataFrame(dos_object, columns=column_names) for dos_object in dos_object_list]
+        
+        dos_data_total=[dos_object_total_dos, dos_object_list, orbital_list]
+        with open('./dos_data_total.pkl', 'wb') as f:
+            pickle.dump(dos_data_total, f)
+            
     return dos_object_total_dos, dos_object_list, orbital_list
     
 def split_dos_parser(atom_number, dataframe_object, element, orbital_list):
@@ -576,10 +609,22 @@ def Get_User_Projection_Orbital_list(orbital_list):
     
     return user_orbital_list
     
+def data_collection(data_list, is_save, graph_config, energy, dos_data):
+    if is_save == True:
+        if len(data_list) == 0:
+            data_list.append(energy)
+            data_list.append(dos_data)
+        else:
+            data_list.append(dos_data)
+    return data_list
+    
 def DOSplot(DOS_list, Color_list, Labellist, graph_config, color_dict, dos_object_total_dos, dos_object_list, orbital_list, is_save):
     name_list = Get_DOS_Name(DOS_list, Labellist)
     plt.figure(figsize=(graph_config['figuresize'][0],graph_config['figuresize'][1]))
     Total_DOS=False
+    data_list_up=[]
+    data_list_down=[]
+    print(DOS_list)
     for index, DOS_temp in enumerate(DOS_list):
         if isinstance(DOS_temp, list) == False:
             if DOS_temp=='Total DOS_all':
@@ -587,10 +632,13 @@ def DOSplot(DOS_list, Color_list, Labellist, graph_config, color_dict, dos_objec
                 energy, dos_up, dos_down=split_dos_parser('total', dos_object_total_dos, DOS_temp, orbital_list)
                 if graph_config['positive_plot'] == True:
                     plt.plot(energy, dos_up, color = color_dict[graph_config['Color_list'][index]], linewidth=graph_config['line_width'], label='Total DOS')
+                    data_list_up=data_collection(data_list_up, is_save, graph_config, energy, dos_up)
                 if graph_config['positive_plot'] == True and graph_config['negative_plot'] == True:
                     plt.plot(energy, dos_down, color = color_dict[graph_config['Color_list'][index]], linewidth=graph_config['line_width'])
+                    data_list_down=data_collection(data_list_down, is_save, graph_config, energy, dos_down)
                 if graph_config['positive_plot'] == False and graph_config['negative_plot'] == True:
                     plt.plot(energy, dos_down*(-1), color = color_dict[graph_config['Color_list'][index]], linewidth=graph_config['line_width'], label='Total DOS')
+                    data_list_down=data_collection(data_list_down, is_save, graph_config, energy, dos_down)
 
             elif DOS_temp.split('_')[0] == 'Total DOS' and DOS_temp.split('_')[1] != 'all':
                 orbital=DOS_temp.split('_')[1]
@@ -607,19 +655,25 @@ def DOSplot(DOS_list, Color_list, Labellist, graph_config, color_dict, dos_objec
                         
                 if graph_config['positive_plot'] == True:
                     plt.plot(energy, dos_up_sum, color = color_dict[graph_config['Color_list'][index]], linewidth=graph_config['line_width'], label = 'Total DOS({})'.format(orbital))
+                    data_list_up=data_collection(data_list_up, is_save, graph_config, energy, dos_up_sum)
                 if graph_config['positive_plot'] == True and graph_config['negative_plot'] == True:
                     plt.plot(energy, dos_down_sum, color = color_dict[graph_config['Color_list'][index]], linewidth=graph_config['line_width'])
+                    data_list_down=data_collection(data_list_down, is_save, graph_config, energy, dos_down_sum)
                 if graph_config['positive_plot'] == False and graph_config['negative_plot'] == True:
                     plt.plot(energy, dos_down_sum*(-1), color = color_dict[graph_config['Color_list'][index]], linewidth=graph_config['line_width'], label = 'Total DOS({})'.format(orbital))
+                    data_list_down=data_collection(data_list_down, is_save, graph_config, energy, dos_down_sum)
                 
             else:
                 energy, dos_up, dos_down = split_dos_parser(str(DOS_temp.split('_')[0]), dos_object_list[int(DOS_temp.split('_')[0])-1], DOS_temp, orbital_list)
                 if graph_config['positive_plot'] == True:
                     plt.plot(energy, dos_up, color = color_dict[graph_config['Color_list'][index]], linewidth=graph_config['line_width'], label = name_list[index])
+                    data_list_up=data_collection(data_list_up, is_save, graph_config, energy, dos_up)
                 if graph_config['positive_plot'] == True and graph_config['negative_plot'] == True:
                     plt.plot(energy, dos_down, color = color_dict[graph_config['Color_list'][index]], linewidth=graph_config['line_width'])
+                    data_list_down=data_collection(data_list_down, is_save, graph_config, energy, dos_down)
                 if graph_config['positive_plot'] == False and graph_config['negative_plot'] == True:
                     plt.plot(energy, dos_down*(-1), color = color_dict[graph_config['Color_list'][index]], linewidth=graph_config['line_width'], label = name_list[index])
+                    data_list_down=data_collection(data_list_down, is_save, graph_config, energy, dos_down)
             
         elif isinstance(DOS_temp, list) == True:
             dos_up_sum = 0
@@ -635,10 +689,13 @@ def DOSplot(DOS_list, Color_list, Labellist, graph_config, color_dict, dos_objec
                     
             if graph_config['positive_plot'] == True:
                 plt.plot(energy, dos_up_sum, color = color_dict[graph_config['Color_list'][index]], linewidth=graph_config['line_width'], label = name_list[index])
+                data_list_up=data_collection(data_list_up, is_save, graph_config, energy, dos_up_sum)
             if graph_config['positive_plot'] == True and graph_config['negative_plot'] == True:
                 plt.plot(energy, dos_down_sum, color = color_dict[graph_config['Color_list'][index]], linewidth=graph_config['line_width'])
+                data_list_down=data_collection(data_list_down, is_save, graph_config, energy, dos_down_sum)
             if graph_config['positive_plot'] == False and graph_config['negative_plot'] == True:
                 plt.plot(energy, dos_down_sum*(-1), color = color_dict[graph_config['Color_list'][index]], linewidth=graph_config['line_width'], label = name_list[index])
+                data_list_down=data_collection(data_list_down, is_save, graph_config, energy, dos_down_sum)
             
     plt.title('DOS', fontsize=graph_config['title_fontsize'])
     plt.xlabel('Energy(eV)', fontsize=graph_config['axis_label_fontsize'])
@@ -663,6 +720,19 @@ def DOSplot(DOS_list, Color_list, Labellist, graph_config, color_dict, dos_objec
     
     if is_save == True:
         plt.savefig('DOS.'+graph_config['save_format'], dpi=graph_config['save_dpi'])
+        table_name_list = get_current_DOS(DOS_list, Labellist, graph_config)
+        table_name_list.insert(0, 'Energy')
+        dos_data_up = np.array(np.array(data_list_up).T)
+        dos_data_down = np.array(data_list_down).T
+        
+        if len(data_list_up) != 0:
+            up_df=pd.DataFrame(dos_data_up, columns=table_name_list)
+            up_df.to_csv("Up_DOS_Data.csv")
+            print('Up_DOS_Data.csv is saved!')
+        if len(data_list_up) != 0:
+            down_df=pd.DataFrame(dos_data_down, columns=table_name_list)
+            down_df.to_csv("Down_DOS_Data.csv")
+            print('Down_DOS_Data.csv is saved!')
         
     plt.show()
 
@@ -1032,3 +1102,4 @@ while True:
         graph_config = change_sign(graph_config, dos_object_total_dos)
     
     graph_config = DOSplot(DOS_list, Color_list, Labellist, graph_config, color_dict, dos_object_total_dos, dos_object_list, orbital_list, is_save)
+
