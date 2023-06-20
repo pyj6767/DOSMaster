@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 #======================================================================================================
-#Script Name : dosmaster Program(ver.1.0)
+#Script Name : dosmaster Program(ver.1.1)
 #Made by Youngjun Park (yjpark29@postech.ac.kr)
 #Inspired by Jaesun Kim
-#Edit Date : 23/06/15
+#Edit Date : 23/06/21
 #======================================================================================================
 #Description : DOS Plot Smartly
 #======================================================================================================
@@ -28,6 +28,7 @@ from matplotlib._color_data import BASE_COLORS, TABLEAU_COLORS, CSS4_COLORS, XKC
 import ase
 import os.path
 from os import path
+import pickle
 
 
 def StartMessage():
@@ -431,26 +432,37 @@ def PROCAR_Parser(file):
     return orbital_list
 
 def Make_DOS_Dataframe():
-    #0. split_dos 함수 실행
-    dos_data_total, dos_data = split_dos()
+    if path.isfile('./dos_data_total.pkl') == True:
+        with open('./dos_data_total.pkl', 'rb') as f:
+            dos_data_total = pickle.load(f)
+        dos_object_total_dos=dos_data_total[0]
+        dos_object_list=dos_data_total[1]
+        orbital_list=dos_data_total[2]
+    else:
+        #0. split_dos 함수 실행
+        dos_data_total, dos_data = split_dos()
     
-    #1. PROCAR에서 orbital_list 받아오기
-    orbital_list = PROCAR_Parser('./PROCAR')
+        #1. PROCAR에서 orbital_list 받아오기
+        orbital_list = PROCAR_Parser('./PROCAR')
 
-    #2. 2차원 리스트 형태로 변환
-    dos_data_total_list=[[dos_temp.e_f] + dos_temp.dos_values for dos_temp in dos_data_total]
-    dos_object_list=[np.array(dos_object.dos_values) for dos_object in dos_data]
+        #2. 2차원 리스트 형태로 변환
+        dos_data_total_list=[[dos_temp.e_f] + dos_temp.dos_values for dos_temp in dos_data_total]
+        dos_object_list=[np.array(dos_object.dos_values) for dos_object in dos_data]
 
-    column_names = []
-    for ol in orbital_list:
-        column_names.append(ol+'_up')
-        column_names.append(ol+'_down')
-    column_names.insert(0, 'Energy')
+        column_names = []
+        for ol in orbital_list:
+            column_names.append(ol+'_up')
+            column_names.append(ol+'_down')
+        column_names.insert(0, 'Energy')
 
-    #3. dos_data[각각]을 table로 변환하기(df)
-    dos_object_total_dos = pd.DataFrame(dos_data_total_list)
-    dos_object_list=[pd.DataFrame(dos_object, columns=column_names) for dos_object in dos_object_list]
-
+        #3. dos_data[각각]을 table로 변환하기(df)
+        dos_object_total_dos = pd.DataFrame(dos_data_total_list)
+        dos_object_list=[pd.DataFrame(dos_object, columns=column_names) for dos_object in dos_object_list]
+        
+        dos_data_total=[dos_object_total_dos, dos_object_list, orbital_list]
+        with open('./dos_data_total.pkl', 'wb') as f:
+            pickle.dump(dos_data_total, f)
+            
     return dos_object_total_dos, dos_object_list, orbital_list
     
 def split_dos_parser(atom_number, dataframe_object, element, orbital_list):
