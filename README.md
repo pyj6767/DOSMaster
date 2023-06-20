@@ -1,9 +1,9 @@
 # DOSMaster
-Program Name : dosmaster Program(ver.1.0)
+Program Name : dosmaster Program(ver.1.1) # 재시작 시 loading 속도 향상
 Made by Youngjun Park (yjpark29@postech.ac.kr)
 Inspired by Jaesun Kim
 
-Edit Date : 23/06/15 
+Edit Date : 23/06/21
 
 Description : DOS Plot Smartly
 
