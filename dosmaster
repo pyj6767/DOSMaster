@@ -726,11 +726,11 @@ def DOSplot(DOS_list, Color_list, Labellist, graph_config, color_dict, dos_objec
         
         if len(data_list_up) != 0:
             up_df=pd.DataFrame(dos_data_up, columns=table_name_list)
-            up_df.to_csv("Up_DOS_Data.csv")
+            up_df.to_csv("Up_DOS_Data.csv", sep='\t', index=False)
             print('Up_DOS_Data.csv is saved!')
         if len(data_list_up) != 0:
             down_df=pd.DataFrame(dos_data_down, columns=table_name_list)
-            down_df.to_csv("Down_DOS_Data.csv")
+            down_df.to_csv("Down_DOS_Data.csv", sep='\t', index=False)
             print('Down_DOS_Data.csv is saved!')
         
     plt.show()
