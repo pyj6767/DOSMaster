@@ -624,7 +624,6 @@ def DOSplot(DOS_list, Color_list, Labellist, graph_config, color_dict, dos_objec
     Total_DOS=False
     data_list_up=[]
     data_list_down=[]
-    print(DOS_list)
     for index, DOS_temp in enumerate(DOS_list):
         if isinstance(DOS_temp, list) == False:
             if DOS_temp=='Total DOS_all':
