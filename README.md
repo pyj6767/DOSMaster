@@ -7,6 +7,8 @@ Edit Date : 23/06/21
 
 Description : DOS Plot Smartly
 
+ver.1.2 : 최종 data 파일 저장 기능 추가
+
 ## Source Code Download
 
    1) 서버의 ssh-key를 복사 : 다음의 명령어를 git clone할 서버에서 입력하면 나옴.
