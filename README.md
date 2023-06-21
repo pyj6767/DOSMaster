@@ -9,6 +9,10 @@ Edit Date : 23/06/21
 
 Description : DOS Plot Smartly
 
+
+version.2.0이 되면 CNMD 구성원 전체에게 공개
+
+
 ver.1.1 : 재시작 시 loading 속도 향상 (by Jaesun Kim)
 
 ver.1.2 : 최종 data 파일 저장 기능 추가
