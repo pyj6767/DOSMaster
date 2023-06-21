@@ -11,7 +11,9 @@ Description : DOS Plot Smartly
 
 ver.1.1 : 재시작 시 loading 속도 향상 (by Jaesun Kim)
 
-ver.1.3 : 최종 data 파일 저장 기능 추가
+ver.1.2 : 최종 data 파일 저장 기능 추가
+
+ver.1.3 : 버그 수정
 
 
 ## Source Code Download
