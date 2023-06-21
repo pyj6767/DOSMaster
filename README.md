@@ -55,7 +55,7 @@ ver.1.3 : 버그 수정
     $ pip install ase
 
 
-## Installation Preparation
+## Preparation
 
     $ chmod 774 dosmaster
 
