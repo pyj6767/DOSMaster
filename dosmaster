@@ -965,7 +965,8 @@ def graph_editor(DOS_list, Labellist, graph_config, color_dict):
             graph_value_input = input('새로운 값을 입력하세요. (리스트 형태는 "[]"로 묶어 리스트로 입력, 숫자는 그냥 숫자로 입력): ')
             if graph_value_input[0] == '[':
                 graph_value=graph_value_input.replace('[','').replace(']','').split(',')
-                #graph_value=[int(g) for g in graph_value]
+                if key_list[int(graph_index_input)-1] != 'Color_list' or key_list[int(graph_index_input)-1] != 'legend_name_list':
+                    graph_value=[float(g) for g in graph_value]
                 graph_config[key_list[int(graph_index_input)-1]] = graph_value
                 return graph_config
             else:
