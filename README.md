@@ -22,19 +22,6 @@ ver.1.3 : 버그 수정
 ver.1.4.2 : PyPI에 올릴 수 있도록 수정
 
 
-## Source Code Download
-
-   1) 서버의 ssh-key를 복사 : 다음의 명령어를 git clone할 서버에서 입력하면 나옴.
-   
-   
-         $ cat ~/.ssh/id_rsa.pub
-   3) 개인 github 계정의 - Settings - SSH keys and GPG keys - New SSH key 클릭
-   4) 복사한 ssh-key를 붙여넣고 key를 등록
-   5) 서버에서 다음 명령어를 입력하여, 소스코드 다운로드
-   
-         $ git clone git@github.com:pyj6767/DOSMaster.git
-
-
 ## Features
 1) Add Atom DOS
 2) DOS Projection
@@ -49,7 +36,24 @@ ver.1.4.2 : PyPI에 올릴 수 있도록 수정
 8) Find Max Contribution Atom DOS (Not Implemented)
 9) Edit Legend Name (Not Implemented)
 
-## Requirements
+## Package Download
+
+    $ pip install dosmaster
+
+
+## Source Code Download
+
+   1) 서버의 ssh-key를 복사 : 다음의 명령어를 git clone할 서버에서 입력하면 나옴.
+
+
+         $ cat ~/.ssh/id_rsa.pub
+   3) 개인 github 계정의 - Settings - SSH keys and GPG keys - New SSH key 클릭
+   4) 복사한 ssh-key를 붙여넣고 key를 등록
+   5) 서버에서 다음 명령어를 입력하여, 소스코드 다운로드
+
+         $ git clone git@github.com:pyj6767/DOSMaster.git
+
+### Requirements
 
     $ pip install matplotlib
     $ pip install numpy
@@ -57,7 +61,7 @@ ver.1.4.2 : PyPI에 올릴 수 있도록 수정
     $ pip install ase
 
 
-## Preparation
+### Preparation
 
     $ chmod 774 dosmaster
 
