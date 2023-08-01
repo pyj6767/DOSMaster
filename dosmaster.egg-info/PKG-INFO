@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: dosmaster
+Version: 1.4.2
+Summary: DOS(Density Of States) Plot Smartly
+Home-page: https://github.com/pyj6767/DOSMaster
+Author: Youngjun Park, Jaeson Kim
+Author-email: yjpark29@postech.ac.kr
+License: CNMD
+Keywords: vasp dos
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Python: >=3.7.13

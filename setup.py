@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-from DOSMaster import __version__
+from main import __version__
 
 # with open("README.rst") as file:
 #     long_description = file.read()
@@ -15,12 +15,11 @@ setup(
     #long_description=long_description,
     license="CNMD",
     classifiers=[
-        "Development Status :: 1 - Production/Stable",
+        "Development Status :: 4 - Beta",
         "Intended Audience :: Science/Research",
-        "License :: CNMD",
         "Natural Language :: English",
         "Programming Language :: Python :: 3 :: Only",
-        "Programming Language :: Python :: 3.7.13",
+        "Programming Language :: Python :: 3.7",
         "Topic :: Scientific/Engineering :: Chemistry",
         "Topic :: Scientific/Engineering :: Physics",
     ],
@@ -30,7 +29,7 @@ setup(
     install_requires=[
         "numpy",
         "matplotlib",
-        "pandas>=1.3.5"
+        "pandas>=1.3.5",
         "ase>=3.22.1",
     ],
     # package_data={ #python 파일이 아닌 다른 파일들을 포함시키는 옵션
@@ -47,7 +46,7 @@ setup(
     #data_files=["examples/orbital_colours.conf", "LICENSE"],
     entry_points={
         "console_scripts": [
-            "dosmaster = DOSMaster.dosmaster:main",
+            "dosmaster = main.dosmaster:main", #main : 폴더, dosmaster : python 파일, main : 함수
         ]
     },
 )

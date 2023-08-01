@@ -19,6 +19,8 @@ ver.1.2 : 최종 data 파일 저장 기능 추가
 
 ver.1.3 : 버그 수정
 
+ver.1.4.2 : PyPI에 올릴 수 있도록 수정
+
 
 ## Source Code Download
 

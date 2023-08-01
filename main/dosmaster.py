@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #======================================================================================================
-#Script Name : dosmaster Program(ver.1.3)
+#Script Name : dosmaster Program(ver.1.4.2)
 #Made by Youngjun Park (yjpark29@postech.ac.kr)
 #Inspired by Jaesun Kim
 #Edit Date : 23/06/21
@@ -1008,99 +1008,98 @@ def change_sign(graph_config, dos_object_total_dos):
         else:
             print('다시 입력해주세요')
             
+def main():
+    Direct, linenumber_dc, linenumber_Lattice_Parameter, linenumber_Atom_Name, linenumber_Atom_Number, lattice_parameters, Atom_Name, Atom_Count, coordinates = ImportCONTCAR()
+    LP, coordi, Separated_List, Labellist = DataRefine_Mainfunction(lattice_parameters, Atom_Name, Atom_Count, coordinates, Direct)
+    Coordi_dict=Coord_to_dict(Labellist, coordi)
+    color_dict = get_color_list()
 
+    Default_Color_list = ['gray', 'red', 'blue', 'green', 'darkorange', 'magenta', 'lightcoral', 'khaki', 'forestgreen', 'darkslategray', 
+                        'slategrey', 'navy', 'darkorchid', 'lightpink', 'darkgoldenrod', 'chartreuse', 'aqua', 'lightblue', 
+                        'midnightblue', 'violet', 'darkred', 'coral', 'seagreen', 'paleturquoise', 'dodgerblue', 'cornflowerblue', 
+                        'purple', 'pink', 'moccasin', 'lightgreen', 'darkcyan', 'powderblue', 'mediumblue', 'slateblue', 'crimson', 
+                        'tan', 'mediumspringgreen', 'aquamarine', 'slategray', 'darkblue', 'indigo', 'indianred', 'darkkhaki', 'darkolivegreen', 
+                        'turquoise', 'skyblue', 'royalblue', 'blueviolet', 'brown', 'blanchedalmond', 'mediumseagreen', 'darkslategrey', 'cadetblue', 
+                        'hotpink', 'palevioletred', 'navajowhite', 'darkseagreen', 'mediumturquoise', 'deepskyblue', 'thistle', 'firebrick', 'chocolate', 
+                        'lawngreen', 'teal', 'lightskyblue', 'mediumslateblue', 'maroon', 'goldenrod', 'limegreen', 'cyan', 'lightslategrey', 'mediumpurple', 
+                        'rosybrown', 'saddlebrown', 'olivedrab', 'lightseagreen', 'lightsteelblue', 'deeppink', 'darksalmon', 'olive', 'darkturquoise', 
+                        'steelblue', 'plum', 'gold', 'yellowgreen', 'mediumaquamarine', 'lightslategray', 'mediumvioletred', 'peachpuff', 'lime', 'orchid', 
+                        'orangered', 'springgreen', 'darkviolet', 'papayawhip', 'yellow', 'darkslateblue', 'lemonchiffon', 'palegreen', 'darkmagenta', 
+                        'antiquewhite', 'greenyellow', 'rebeccapurple', 'orange', 'mediumorchid', 'burlywood', 'palegoldenrod', 'cornsilk', 'sienna', 
+                        'peru', 'wheat', 'lightsalmon', 'bisque', 'salmon', 'tomato', 'sandybrown']
 
+    Color_list = Default_Color_list
+    is_save = False
+    DOS_list = ['Total DOS_all']
+    legend_name_list=['Total DOS(all)']
 
-Direct, linenumber_dc, linenumber_Lattice_Parameter, linenumber_Atom_Name, linenumber_Atom_Number, lattice_parameters, Atom_Name, Atom_Count, coordinates = ImportCONTCAR()
-LP, coordi, Separated_List, Labellist = DataRefine_Mainfunction(lattice_parameters, Atom_Name, Atom_Count, coordinates, Direct)
-Coordi_dict=Coord_to_dict(Labellist, coordi)
-color_dict = get_color_list()
+    graph_config = {'figuresize' : [8, 6],
+                    'axis_label_fontsize' : 13,
+                    'legend_fontsize' : 13,
+                    'ticks_fontsize' : 13,
+                    'title_fontsize' : 13,
+                    'Color_list' : Color_list,
+                    'legend_name_list' : legend_name_list,
+                    'line_width' : 1,
+                    'xlim' : None,
+                    'ylim' : None,
+                    'positive_plot' : True,
+                    'negative_plot' : True,
+                    'save_format' : 'pdf',
+                    'save_dpi' : 200
+                }
 
-Default_Color_list = ['gray', 'red', 'blue', 'green', 'darkorange', 'magenta', 'lightcoral', 'khaki', 'forestgreen', 'darkslategray', 
-                      'slategrey', 'navy', 'darkorchid', 'lightpink', 'darkgoldenrod', 'chartreuse', 'aqua', 'lightblue', 
-                      'midnightblue', 'violet', 'darkred', 'coral', 'seagreen', 'paleturquoise', 'dodgerblue', 'cornflowerblue', 
-                      'purple', 'pink', 'moccasin', 'lightgreen', 'darkcyan', 'powderblue', 'mediumblue', 'slateblue', 'crimson', 
-                      'tan', 'mediumspringgreen', 'aquamarine', 'slategray', 'darkblue', 'indigo', 'indianred', 'darkkhaki', 'darkolivegreen', 
-                      'turquoise', 'skyblue', 'royalblue', 'blueviolet', 'brown', 'blanchedalmond', 'mediumseagreen', 'darkslategrey', 'cadetblue', 
-                      'hotpink', 'palevioletred', 'navajowhite', 'darkseagreen', 'mediumturquoise', 'deepskyblue', 'thistle', 'firebrick', 'chocolate', 
-                      'lawngreen', 'teal', 'lightskyblue', 'mediumslateblue', 'maroon', 'goldenrod', 'limegreen', 'cyan', 'lightslategrey', 'mediumpurple', 
-                      'rosybrown', 'saddlebrown', 'olivedrab', 'lightseagreen', 'lightsteelblue', 'deeppink', 'darksalmon', 'olive', 'darkturquoise', 
-                      'steelblue', 'plum', 'gold', 'yellowgreen', 'mediumaquamarine', 'lightslategray', 'mediumvioletred', 'peachpuff', 'lime', 'orchid', 
-                      'orangered', 'springgreen', 'darkviolet', 'papayawhip', 'yellow', 'darkslateblue', 'lemonchiffon', 'palegreen', 'darkmagenta', 
-                      'antiquewhite', 'greenyellow', 'rebeccapurple', 'orange', 'mediumorchid', 'burlywood', 'palegoldenrod', 'cornsilk', 'sienna', 
-                      'peru', 'wheat', 'lightsalmon', 'bisque', 'salmon', 'tomato', 'sandybrown']
+    StartMessage()
+    print('                         DOG version 1.0 : 현재는 ISPIN = 2 계산만 지원됩니다.              ')
+    print()
+    print('============================= Reading DOSCAR (Start) ======================================')
+    print('                                          ...                                              ')
+    if path.exists("DOSCAR") == False:
+        print('DOSCAR 파일을 찾을 수 없습니다.')
+        exit()
+        
+    if path.exists("PROCAR") == False:
+        print('PROCAR 파일을 찾을 수 없습니다.')
+        exit()
 
-Color_list = Default_Color_list
-is_save = False
-DOS_list = ['Total DOS_all']
-legend_name_list=['Total DOS(all)']
+    dos_object_total_dos, dos_object_list, orbital_list = Make_DOS_Dataframe()
+    print('============================= Reading DOSCAR (Finish)======================================')
+    print()
+        
+    while True:
+        #print('현재 출력되는 DOS 리스트 : | color')
+        print_current_DOS(DOS_list, Labellist, graph_config)
+        print('하고싶은 작업이 무엇인가? (Exit : q or qq)')
+        print('==================================================================================================================')
+        print('1 : Atom DOS 추가')
+        print('2 : DOS Projection 시키기')
+        print('3 : 특정 DOS 제거')
+        print('4 : 그래프 스타일 수정')
+        print('5 : 양수/음수 부분만 나타내기')
+        print('==================================================================================================================')
+        Input_Work=input('선택 : ')
+        print('-'*80)
 
-graph_config = {'figuresize' : [8, 6],
-                'axis_label_fontsize' : 13,
-                'legend_fontsize' : 13,
-                'ticks_fontsize' : 13,
-                'title_fontsize' : 13,
-                'Color_list' : Color_list,
-                'legend_name_list' : legend_name_list,
-                'line_width' : 1,
-                'xlim' : None,
-                'ylim' : None,
-                'positive_plot' : True,
-                'negative_plot' : True,
-                'save_format' : 'pdf',
-                'save_dpi' : 200
-               }
+        if Input_Work == 'q':
+            user_is_save=input('현재까지 그린 DOS를 저장하시겠습니까? (1 : yes / 2 : no(default) : ')
+            if user_is_save == '1':
+                is_save = True
+            else:
+                is_save = False
+            DOSplot(DOS_list, Color_list, Labellist, graph_config, color_dict, dos_object_total_dos, dos_object_list, orbital_list, is_save)
+            break
+        elif Input_Work == '1':
+            DOS_list = Add_Atom_DOS(DOS_list, Labellist, coordi)
+        elif Input_Work == '2':
+            DOS_list = Projected_DOS(DOS_list, orbital_list, Labellist, graph_config)
+        elif Input_Work == '3':
+            DOS_list = Remove_DOS(DOS_list, Labellist, graph_config)
+        elif Input_Work == '4':
+            graph_config = graph_editor(DOS_list, Labellist, graph_config, color_dict)
+        elif Input_Work == '5':
+            graph_config = change_sign(graph_config, dos_object_total_dos)
+        
+        graph_config = DOSplot(DOS_list, Color_list, Labellist, graph_config, color_dict, dos_object_total_dos, dos_object_list, orbital_list, is_save)
 
-StartMessage()
-print('                         DOG version 1.0 : 현재는 ISPIN = 2 계산만 지원됩니다.              ')
-print()
-print('============================= Reading DOSCAR (Start) ======================================')
-print('                                          ...                                              ')
-if path.exists("DOSCAR") == False:
-    print('DOSCAR 파일을 찾을 수 없습니다.')
-    exit()
-    
-if path.exists("PROCAR") == False:
-    print('PROCAR 파일을 찾을 수 없습니다.')
-    exit()
-
-dos_object_total_dos, dos_object_list, orbital_list = Make_DOS_Dataframe()
-print('============================= Reading DOSCAR (Finish)======================================')
-print()
-    
-while True:
-    #print('현재 출력되는 DOS 리스트 : | color')
-    print_current_DOS(DOS_list, Labellist, graph_config)
-    print('하고싶은 작업이 무엇인가? (Exit : q or qq)')
-    print('==================================================================================================================')
-    print('1 : Atom DOS 추가')
-    print('2 : DOS Projection 시키기')
-    print('3 : 특정 DOS 제거')
-    print('4 : 그래프 스타일 수정')
-    print('5 : 양수/음수 부분만 나타내기')
-    print('==================================================================================================================')
-    Input_Work=input('선택 : ')
-    print('-'*80)
-
-    if Input_Work == 'q':
-        user_is_save=input('현재까지 그린 DOS를 저장하시겠습니까? (1 : yes / 2 : no(default) : ')
-        if user_is_save == '1':
-            is_save = True
-        else:
-            is_save = False
-        DOSplot(DOS_list, Color_list, Labellist, graph_config, color_dict, dos_object_total_dos, dos_object_list, orbital_list, is_save)
-        break
-    elif Input_Work == '1':
-        DOS_list = Add_Atom_DOS(DOS_list, Labellist, coordi)
-    elif Input_Work == '2':
-        DOS_list = Projected_DOS(DOS_list, orbital_list, Labellist, graph_config)
-    elif Input_Work == '3':
-        DOS_list = Remove_DOS(DOS_list, Labellist, graph_config)
-    elif Input_Work == '4':
-        graph_config = graph_editor(DOS_list, Labellist, graph_config, color_dict)
-    elif Input_Work == '5':
-        graph_config = change_sign(graph_config, dos_object_total_dos)
-    
-    graph_config = DOSplot(DOS_list, Color_list, Labellist, graph_config, color_dict, dos_object_total_dos, dos_object_list, orbital_list, is_save)
-
-
+if __name__ == "__main__":
+    main()

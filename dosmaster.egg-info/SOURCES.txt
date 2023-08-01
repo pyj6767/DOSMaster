@@ -1,0 +1,10 @@
+README.md
+setup.py
+dosmaster.egg-info/PKG-INFO
+dosmaster.egg-info/SOURCES.txt
+dosmaster.egg-info/dependency_links.txt
+dosmaster.egg-info/entry_points.txt
+dosmaster.egg-info/requires.txt
+dosmaster.egg-info/top_level.txt
+main/__init__.py
+main/dosmaster.py
