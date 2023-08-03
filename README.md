@@ -5,9 +5,9 @@ Made by Youngjun Park (yjpark29@postech.ac.kr)
 
 Inspired by Jaesun Kim
 
-Edit Date : 23/06/21
+Edit Date : 23/08/02
 
-Description : DOS Plot Smartly
+Description : DOS Plot Smartly in Terminal Environment
 
 
 version.2.0이 되면 CNMD 구성원 전체에게 공개
@@ -21,20 +21,24 @@ ver.1.3 : 버그 수정
 
 ver.1.4.2 : PyPI에 올릴 수 있도록 수정
 
+ver 1.7.2 : Modul화 진행, DOS_Sum, Average_DOS, Axis_Optimization 추가 및 각종 성능 향상
+
 
 ## Features
 1) Add Atom DOS
 2) DOS Projection
-3) Remove DOS
-4) Edit Graph Style
-5) Plot only Positive/Negative part
+3) Sum DOS
+4) Average DOS
+5) Remove DOS
+6) Plot only Positive/Negative part
+7) Edit Graph Style
+8) Axis Optimization
 
----------------- (Future Version) -------------------
 
-6) DOS sum (Not Implemented)
-7) ISPIN=1 Support (Not Implemented)
-8) Find Max Contribution Atom DOS (Not Implemented)
-9) Edit Legend Name (Not Implemented)
+## Future Update (ver.1.8.0)
+9) ISPIN=1 Support (Not Implemented)
+10) Group Projection for Same Orbital (Not Implemented)
+
 
 ## Package Download
 
@@ -59,6 +63,7 @@ ver.1.4.2 : PyPI에 올릴 수 있도록 수정
     $ pip install numpy
     $ pip install pandas
     $ pip install ase
+    $ pip install colorama
 
 
 ### Preparation

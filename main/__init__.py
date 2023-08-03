@@ -4,4 +4,4 @@
 dosmaster is a code that conveniently manipulates DOS(Density Of States).
 """
 
-__version__ = "1.4.2"
+__version__ = "1.7.2"

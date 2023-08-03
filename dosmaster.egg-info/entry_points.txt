@@ -1,2 +1,0 @@
-[console_scripts]
-dosmaster = main.dosmaster:main
