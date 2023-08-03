@@ -2,8 +2,8 @@ from setuptools import find_packages, setup
 
 from main import __version__
 
-with open("README.md") as file:
-    long_description = file.read()
+#with open("README.md") as file:
+#    long_description = file.read()
 
 setup(
     name="dosmaster",
@@ -12,7 +12,7 @@ setup(
     url="https://github.com/pyj6767/DOSMaster",
     author="Youngjun Park, Jaeson Kim",
     author_email="yjpark29@postech.ac.kr",
-    long_description=long_description,
+    #long_description=long_description,
     license="CNMD",
     classifiers=[
         "Development Status :: 4 - Beta",
