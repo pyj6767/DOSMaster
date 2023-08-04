@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-from main import __version__
+from dosmaster.main import __version__
 
 #with open("README.md") as file:
 #    long_description = file.read()
@@ -35,12 +35,13 @@ setup(
     ],
     package_data={
         "dosmaster": [
-            "subplotter/colors.csv",
+            "dosmaster/subplotter/colors.csv",
         ]
     },
+    include_package_data=True,
     entry_points={
         "console_scripts": [
-            "dosmaster = main.dosmaster:main",
+            "dosmaster = dosmaster.main.dosmaster:main",
         ]
     },
 )
