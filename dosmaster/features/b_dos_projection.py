@@ -23,18 +23,18 @@ def Projected_DOS(data_dict, graph_config):
     Labellist = data_dict['Labellist']
     
     print_current_DOS(DOS_list, Labellist, graph_config)
-    while True:
-        group_select = input('Please select the DOS for projection (enter index) : ')
-    
-        if group_select == 'q':
-            return DOS_list, graph_config
+    group_select = input('Please select the DOS for projection (enter index) : ')
 
-        elif group_select.isdigit() == True:
-            group_select = int(group_select)
-            group_select = group_select - 1
-    
-        else:
-            print('Please enter again.')
+    if group_select == 'q':
+        return DOS_list, graph_config
+
+    elif group_select.isdigit() == True:
+        group_select = int(group_select)
+        group_select = group_select - 1
+
+    else:
+        print('Please enter again.')
+        return DOS_list, graph_config
     
     if isinstance(DOS_list[group_select], list) == False:
         if DOS_list[group_select] == 'Total DOS_all':
