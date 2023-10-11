@@ -1,0 +1,4 @@
+include dosmaster/subplotter/colors.csv
+include dosmaster/custom_setting/example_default.yaml
+include dosmaster/custom_setting/example_figure_size_up.yaml
+include dosmaster/custom_setting/example_font_size_up.yaml
