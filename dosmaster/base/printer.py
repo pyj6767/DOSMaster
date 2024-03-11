@@ -114,5 +114,8 @@ def Reading_Files():
     print()
     print('                                    Your Calculation Setting : ISPIN = {}'.format(is_spin_value))
     print(Style.RESET_ALL)
+    print(Style.BRIGHT + Fore.CYAN)
+    print('Xshell에서 그림을 끌 때는 꼭 "q"를 눌러서 끄세요!!!!')
+    print(Style.RESET_ALL)
     print()
     return dos_object_total_dos, dos_object_list, orbital_list, is_spin
