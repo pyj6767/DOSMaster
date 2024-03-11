@@ -4,6 +4,7 @@ Program Name : dosmaster Program
 Made by Youngjun Park (yjpark29@postech.ac.kr)
 
 Inspired by Jaesun Kim(CNMD)
+
 Tested by Changhun Kim(CNMD), Suyun Chae(CNMD)
 
 Edit Date : 24/03/10
