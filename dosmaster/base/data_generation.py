@@ -35,11 +35,12 @@ def make_data_dict():
     data_dict['DOS_list'] = ['Total DOS_all']
     data_dict['legend_name_list'] = ['Total DOS(all)']
     
-    dos_object_total_dos, dos_object_list, orbital_list = Reading_Files()
+    dos_object_total_dos, dos_object_list, orbital_list, is_spin = Reading_Files()
     
     data_dict['dos_object_total_dos'] = dos_object_total_dos
     data_dict['dos_object_list'] = dos_object_list
     data_dict['orbital_list'] = orbital_list
+    data_dict['is_spin'] = is_spin
     
     return data_dict
     

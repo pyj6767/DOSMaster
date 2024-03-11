@@ -53,18 +53,25 @@ def Make_DOS_Dataframe():
         print(Fore.YELLOW)
         print('                             Existing dos data file exists. Loading the dos data.')
         print(Style.RESET_ALL)
+        # Load dos_data_total.pkl, get dos_data_total and is_spin
         with open('./dos_data_total.pkl', 'rb') as f:
             dos_data_total = pickle.load(f)
+            is_spin = pickle.load(f)
         dos_object_total_dos=dos_data_total[0]
         dos_object_list=dos_data_total[1]
         orbital_list=dos_data_total[2]
     else:
         print('                                                    ...                                                            ')
         #0. Run split_dos function
-        dos_data_total, dos_data = split_dos()
+        dos_data_total, dos_data, is_spin = split_dos()
     
-        #1. Get orbital_list from PROCAR
-        orbital_list = PROCAR_Parser('./PROCAR')
+        if path.exists("PROCAR") == False:
+            print('PROCAR file cannot be found. Now Dosmaster uses basic orbital list.')
+            orbital_list = ['s', 'py', 'pz', 'px', 'dxy', 'dyz', 'dz2', 'dxz', 'x2-y2']
+    
+        else:
+            #1. Get orbital_list from PROCAR
+            orbital_list = PROCAR_Parser('./PROCAR')
 
         #2. Convert to 2D list
         dos_data_total_list=[[dos_temp.e_f] + dos_temp.dos_values for dos_temp in dos_data_total]
@@ -83,24 +90,29 @@ def Make_DOS_Dataframe():
         dos_data_total=[dos_object_total_dos, dos_object_list, orbital_list]
         with open('./dos_data_total.pkl', 'wb') as f:
             pickle.dump(dos_data_total, f)
+            pickle.dump(is_spin, f)
             
-    return dos_object_total_dos, dos_object_list, orbital_list
+    return dos_object_total_dos, dos_object_list, orbital_list, is_spin
 
 def Reading_Files():
     print(Style.BRIGHT, Fore.RED)
-    print('                     DOG version {:>5} : Currently, only ISPIN = 2 calculations are supported.            '.format(__version__))
+    print('                 DOG version {:>5} : Now, ISPIN = 2 & ISPIN = 1 both calculations are supported.            '.format(__version__))
     print(Style.RESET_ALL)
     print()
     print('========================================= Reading DOSCAR (Start) =================================================')
     if path.exists("DOSCAR") == False:
         print('DOSCAR file cannot be found.')
         exit()
-        
-    if path.exists("PROCAR") == False:
-        print('PROCAR file cannot be found.')
-        exit()
 
-    dos_object_total_dos, dos_object_list, orbital_list = Make_DOS_Dataframe()
+    dos_object_total_dos, dos_object_list, orbital_list, is_spin = Make_DOS_Dataframe()
     print('========================================= Reading DOSCAR (Finish)=================================================')
+    print(Style.BRIGHT, Fore.RED)
+    if is_spin == True:
+        is_spin_value = 2
+    else:
+        is_spin_value = 1
     print()
-    return dos_object_total_dos, dos_object_list, orbital_list
+    print('                                    Your Calculation Setting : ISPIN = {}'.format(is_spin_value))
+    print(Style.RESET_ALL)
+    print()
+    return dos_object_total_dos, dos_object_list, orbital_list, is_spin

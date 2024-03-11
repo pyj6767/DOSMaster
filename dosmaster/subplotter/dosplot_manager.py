@@ -22,6 +22,7 @@ def get_current_DOS(DOS_list, Labellist, graph_config):
     return dos_column_list
     
 def split_dos_parser(atom_number, dataframe_object, element, orbital_list):
+    #print(dataframe_object)
     if atom_number == 'total':
         energy=np.array(dataframe_object[0], dtype=np.float64)
         dos_up=np.array(dataframe_object[1], dtype=np.float64)
@@ -36,7 +37,6 @@ def split_dos_parser(atom_number, dataframe_object, element, orbital_list):
         column_names.insert(0, 'Energy')
         energy=np.array(list(dataframe_object['Energy']), dtype=np.float64)
         orbital_select_element = element.split('_')[1]
-        
         if orbital_select_element == 'all':
             dos_up = np.array([0 for e in energy], dtype=np.float64)
             dos_down = np.array([0 for e in energy], dtype=np.float64)

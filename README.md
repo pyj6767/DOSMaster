@@ -3,12 +3,15 @@ Program Name : dosmaster Program
 
 Made by Youngjun Park (yjpark29@postech.ac.kr)
 
-Inspired by Jaesun Kim
+Inspired by Jaesun Kim(CNMD)
+Tested by Changhun Kim(CNMD), Suyun Chae(CNMD)
 
-Edit Date : 23/10/11
+Edit Date : 24/03/10
 
 Description : DOS Plot Smartly in Terminal Environment
 
+
+version.1.8.3 이 되면 CNMD 구성원 전체에게 공개
 
 
 ver.1.1 : 재시작 시 loading 속도 향상 (by Jaesun Kim)
@@ -23,26 +26,22 @@ ver 1.7.13 : Packaging 진행, DOS_Sum, Average_DOS, Axis_Optimization 추가 �
 
 ver 1.8.1 : Label 버그 수정, 각종 버그 수정, Setting 저장 및 불러오기 기능 구현, DOS plot 저장 및 불러오기 기능 구현, shift_x_axis 구현, 연속된 숫자 입력 기능 확장, legend display 여부 선택 가능
 
+ver 1.8.3 : ISPIN = 1 calculation 지원 및 각종 버그 수정
+
 
 ## Features
-1) Add Atom DOS
-2) DOS Projection
-3) Sum DOS
-4) Average DOS
-5) Remove DOS
-6) Plot only Positive/Negative part
-7) Edit Graph Style
-8) Axis Optimization
-9) Import global custom setting (in package)
-10) Save global custom setting (in package)
-11) Import DOSMaster plot from current directory
-12) Save DOSMaster plot in current directory
-
-
-## Future Update (ver.1.8.2)
-13) ISPIN=1 Support (Not Implemented)
-14) Subplot
-
+1) Add Atom DOS : 원하는 atom의 DOS를 추가합니다.
+2) DOS Projection : 특정 DOS를 원하는 orbital로 projection 시킵니다.
+3) Sum DOS : 특정 DOS들의 기여분을 합칩니다.
+4) Average DOS : 특정 DOS들의 기여분을 평균화합니다.
+5) Remove DOS : 특정 DOS를 지웁니다.
+6) Plot only Positive/Negative part : DOS plot의 양/음수 부분만 plot합니다.
+7) Edit Graph Style : 원하는 graph style로 바꿉니다.
+8) Axis Optimization : 현재의 ylim을 현재의 DOS에 맞게 최적화시킵니다.
+9) Import global custom setting (in package) : package 폴더 내의 나만의 graph setting을 불러옵니다.
+10) Save global custom setting (in package) : package 폴더 내에 나만의 graph setting을 저장합니다.
+11) Import DOSMaster plot from current directory : 현재 위치에 저장된 DOSMaster plot을 불러옵니다.
+12) Save DOSMaster plot in current directory : 현재 위치에 지금까지 작업한 DOSMaster plot을 저장합니다.
 
 ## Package Download
 
@@ -61,21 +60,20 @@ ver 1.8.1 : Label 버그 수정, 각종 버그 수정, Setting 저장 및 불러
 
          $ git clone git@github.com:pyj6767/DOSMaster.git
 
-### Source Code Requirements
+### Requirements
 
     $ pip install matplotlib
     $ pip install numpy
     $ pip install pandas
     $ pip install ase
     $ pip install colorama
-    $ pip install PyYAML
 
 
-### Source Code Preparation
+### Preparation
 
     $ chmod 774 dosmaster
 
-## Source Code Run dosmaster
+## Run dosmaster
 
     $ cd [DOS 계산한 폴더]
     $ dosmaster

@@ -92,6 +92,7 @@ def DOSplot(data_dict, graph_config):
                     orbital=element.split('_')[1]
                     for label_index, label in enumerate(Labellist):
                         energy_save, dos_up, dos_down = split_dos_parser(str(label_index+1), dos_object_list[label_index], str(label_index+1)+'_'+str(orbital), orbital_list)
+                        
                         energy = graph_config['shift_x_axis'] + np.array(energy_save)
                         if index == 0:
                             dos_up_sum = dos_up
@@ -101,6 +102,8 @@ def DOSplot(data_dict, graph_config):
                             dos_down_sum += dos_down
                 else:
                     energy_save, dos_up, dos_down = split_dos_parser(str(element.split('_')[0]), dos_object_list[int(element.split('_')[0])-1], element, orbital_list)
+                    # print(DOS_temp)
+                    # print(dos_up)
                     energy = graph_config['shift_x_axis'] + np.array(energy_save)
                     if element_index == 0:
                         dos_up_sum = dos_up

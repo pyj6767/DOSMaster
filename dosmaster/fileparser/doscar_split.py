@@ -39,18 +39,30 @@ def write_dos0(lines, index, nedos, efermi):
     line = lines[index+1].strip().split()
     ncols = int(len(line))
 
-    for n in range(nedos):
-        index += 1
-        e = float(lines[index].strip().split()[0])
-        e_f = e - efermi
+    if ncols == 3:
+        for n in range(nedos):
+            index += 1
+            e = float(lines[index].strip().split()[0])
+            e_f = e - efermi
 
-        dos_values = []
-        for col in range(1, ncols):
-            dos = float(lines[index].strip().split()[col])
-            dos_values.append(dos)
+            dos_up = float(lines[index].strip().split()[1])
+            dos_down = float(lines[index].strip().split()[1]) * 1
+            dos_entry = DOSData(e_f, [dos_up, dos_down]) # added a list of zeros for spin down
+            dos_data.append(dos_entry)
 
-        dos_entry = DOSData(e_f, dos_values)
-        dos_data.append(dos_entry)
+    elif ncols == 5:
+        for n in range(nedos):
+            index += 1
+            e = float(lines[index].strip().split()[0])
+            e_f = e - efermi
+
+            dos_values = []
+            for col in range(1, ncols):
+                dos = float(lines[index].strip().split()[col])
+                dos_values.append(dos)
+
+            dos_entry = DOSData(e_f, dos_values)
+            dos_data.append(dos_entry)
 
     return index, dos_data
 
@@ -63,6 +75,8 @@ def write_nospin(lines, index, nedos, natoms, ncols, efermi):
     else:
         pos = atoms.get_positions()
 
+    nsites = ncols - 1
+
     for i in range(1, natoms+1):
         si = str(i)
 
@@ -71,12 +85,19 @@ def write_nospin(lines, index, nedos, natoms, ncols, efermi):
         dos_values = []
 
         for n in range(nedos):
-            index += 1
+            index +=1
             e = float(lines[index].strip().split()[0])
             e_f = e - efermi
-            dos_values.append([e_f] + [float(lines[index].strip().split()[col]) for col in range(1, ncols)])
 
-        dos_entry = DOSData(pos[ia, 0], pos[ia, 1], pos[ia, 2], dos_values)
+            dos_entries = [e_f]
+            for site in range(nsites):
+                dos_up = float(lines[index].strip().split()[site + 1])
+                dos_down = float(lines[index].strip().split()[site + 1]) * (-1)
+                dos_entries.extend([dos_up, dos_down])
+
+            dos_values.append(dos_entries)
+            
+        dos_entry = DOSData(e_f, dos_values)
         dos_data.append(dos_entry)
 
     return index, dos_data
@@ -110,6 +131,7 @@ def write_spin(lines, index, nedos, natoms, ncols, efermi):
                 dos_entries.extend([dos_up, dos_down])
 
             dos_values.append(dos_entries)
+            
         dos_entry = DOSData(e_f, dos_values)
         dos_data.append(dos_entry)
 
@@ -128,7 +150,7 @@ def split_dos():
     else:
         index, dos_data = write_nospin(lines, index, nedos, natoms, ncols, efermi)
         is_spin = False
-    
-    return dos_data_total, dos_data
+
+    return dos_data_total, dos_data, is_spin
 
 #==========================================================================================[split_dos]===============================================================================

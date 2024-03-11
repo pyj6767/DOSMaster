@@ -42,6 +42,11 @@ def Add_Atom_DOS(data_dict, graph_config):
         print('all (enter)')
         print('q (enter) : Selection complete')
         print('============================')
+        
+        if len(Selected_atoms) != 0:
+            atom_indices = [int(atom_index.split('_')[0])-1 for atom_index in Selected_atoms]
+            #Sorting
+            print('Selected Atoms : ', [Labellist[atom_index] for atom_index in atom_indices])
         Input_Work=input('Please select the index of the Atom (If the selection is complete, enter q) : ')
         if Input_Work == 'q':
             break

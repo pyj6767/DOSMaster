@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 #======================================================================================================
-#Script Name : dosmaster Program(ver.1.7.13)
+#Script Name : dosmaster Program(ver.1.8.3)
 #Made by Youngjun Park (yjpark29@postech.ac.kr)
 #Inspired by Jaesun Kim
-#Edit Date : 23/08/02
+#Tested by Changhun Kim, Suyun Chae
+#Edit Date : 24/03/10
 #======================================================================================================
 #Description : DOS Plot Smartly in Terminal Environment
 #======================================================================================================
@@ -15,10 +16,10 @@
 #: 6) Plot only Positive/Negative part
 #: 7) Edit Graph Style
 #: 8) Axis Optimization
-
-# Future Update (ver.1.8.0)
-#: 9) ISPIN=1 Support (Not Implemented)
-#: 10) Group Projection for Same Orbital (Not Implemented)
+#: 9) Import global custom setting (in package)
+#: 10) Save global custom setting (in package)
+#: 11) Import DOSMaster plot from current directory
+#: 12) Save DOSMaster plot in current directory
 #======================================================================================================
 
 import matplotlib.pyplot as plt
@@ -59,7 +60,7 @@ def StartMessage():
     print("###################                                                   #######################")
     print("###################                          version : {:5}          #######################".format(__version__))
     print("###################                                                   #######################")
-    print("###################                                2023.08.02         #######################")
+    print("###################                                2024.03.10         #######################")
     print("###################                        yjpark29@postech.ac.kr     #######################")
     print("###################                          Young-jun Park(CNMD)     #######################")
     print("###################                                                   #######################")
