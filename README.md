@@ -1,8 +1,6 @@
 # DOSMaster
 
-.. image:: [Generic badge](https://img.shields.io/badge/version-1.8.4-dosmaster.svg)
-    :target: https://pypi.org/project/dosmaster/
-    :alt: Pypi Repository
+[![PyPI](https://img.shields.io/pypi/v/dosmaster.svg)](https://pypi.org/project/dosmaster/)
 
 Program Name : dosmaster Program
 
