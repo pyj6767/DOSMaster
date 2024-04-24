@@ -1,4 +1,9 @@
 # DOSMaster
+
+.. image:: https://img.shields.io/pypi/v/dosmaster
+    :target: https://pypi.org/project/dosmaster/
+    :alt: Pypi Repository
+
 Program Name : dosmaster Program
 
 Made by Youngjun Park (yjpark29@postech.ac.kr)
