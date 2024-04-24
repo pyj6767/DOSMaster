@@ -19,6 +19,7 @@ Description : DOS Plot Smartly in Terminal Environment
 
 version.1.8.3 이 되면 CNMD 구성원 전체에게 공개
 
+### Release History
 
 ver.1.1 : 재시작 시 loading 속도 향상 (by Jaesun Kim)
 
