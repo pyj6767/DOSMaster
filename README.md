@@ -78,3 +78,7 @@ ver 1.8.3 : ISPIN = 1 calculation 지원 및 각종 버그 수정
 
     $ cd [DOS 계산한 폴더]
     $ dosmaster
+
+
+## License
+DOSMaster is made available under the MIT License.
