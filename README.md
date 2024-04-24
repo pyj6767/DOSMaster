@@ -28,6 +28,7 @@ ver 1.7.13 : Packaging 진행, DOS_Sum, Average_DOS, Axis_Optimization 추가 �
 ver 1.8.1 : Label 버그 수정, 각종 버그 수정, Setting 저장 및 불러오기 기능 구현, DOS plot 저장 및 불러오기 기능 구현, shift_x_axis 구현, 연속된 숫자 입력 기능 확장, legend display 여부 선택 가능
 
 ver 1.8.3 : ISPIN = 1 calculation 지원 및 각종 버그 수정
+ver 1.8.4 : Lisence 수정
 
 
 ## Features
