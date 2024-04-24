@@ -1,5 +1,6 @@
 # DOSMaster
 
+Link for dosmaster-pypi package(click the icon)
 [![PyPI](https://img.shields.io/pypi/v/dosmaster.svg)](https://pypi.org/project/dosmaster/)
 
 Program Name : dosmaster Program
