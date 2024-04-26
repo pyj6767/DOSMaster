@@ -37,6 +37,8 @@ ver 1.8.3 : ISPIN = 1 calculation 지원 및 각종 버그 수정
 
 ver 1.8.4 : Lisence 수정
 
+ver 1.8.5 : f orbital error 수정
+
 
 ## Features
 1) Add Atom DOS : 원하는 atom의 DOS를 추가합니다.
