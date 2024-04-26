@@ -67,7 +67,7 @@ def Make_DOS_Dataframe():
     
         if path.exists("PROCAR") == False:
             print('PROCAR file cannot be found. Now Dosmaster uses basic orbital list.')
-            orbital_list = ['s', 'py', 'pz', 'px', 'dxy', 'dyz', 'dz2', 'dxz', 'x2-y2']
+            orbital_list = ['s', 'py', 'pz', 'px', 'dxy', 'dyz', 'dz2', 'dxz', 'x2-y2', 'fxyz', 'fyz2', 'fz3', 'fxz2', 'fzx3', 'fx3']
     
         else:
             #1. Get orbital_list from PROCAR
