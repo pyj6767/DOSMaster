@@ -103,6 +103,6 @@ def Axis_Optimization(data_dict, graph_config):
         
         ylim_min = min_value + min_value*0.1
         ylim_max = max_value + max_value*0.1
-        graph_config['ylim'] = [ylim_min, ylim_max]
+        graph_config['ylim'] = [float(ylim_min), float(ylim_max)]
     
     return graph_config
