@@ -66,6 +66,16 @@ def split_dos_parser(atom_number, dataframe_object, element, orbital_list):
                     elif cn.split('_')[1] == 'down':
                         dos_down += np.array(dataframe_object[cn])
 
+        elif orbital_select_element == 'f':
+            dos_up = np.array([0 for e in energy], dtype=np.float64)
+            dos_down = np.array([0 for e in energy], dtype=np.float64)
+            for cn in column_names[1:]:
+                if cn[0] == 'd':
+                    if cn.split('_')[1] == 'up':
+                        dos_up += np.array(dataframe_object[cn])
+                    elif cn.split('_')[1] == 'down':
+                        dos_down += np.array(dataframe_object[cn])
+
         else:
             for cn in column_names[1:]:
                 if cn == orbital_select_element+'_up':
