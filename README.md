@@ -42,7 +42,7 @@ ver 1.8.5 : f orbital error 수정
 
 ver 1.8.8 : Save plot in current directory - ylim optimization 시 오류 수정
 
-ver 1.8.9 : f orbital sum error 수정
+ver 1.8.10 : f orbital sum error 수정
 
 ## Features
 1) Add Atom DOS : 원하는 atom의 DOS를 추가합니다.
