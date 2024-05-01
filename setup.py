@@ -2,14 +2,14 @@ from setuptools import find_packages, setup
 
 from dosmaster.main import __version__
 
-#with open("README.md") as file:
-#    long_description = file.read()
+with open("README.md") as file:
+    long_description = file.read()
 
 setup(
     name="dosmaster",
     version=__version__,
     description="DOS(Density Of States) Plot Smartly in Terminal",
-    long_description="DOS(Density Of States) Plot Smartly and Conveniently in Terminal Environment.",
+    long_description=long_description
     long_description_content_type="text/markdown",
     url="https://github.com/pyj6767/DOSMaster",
     author="Youngjun Park, Jaeson Kim in CNMD",
