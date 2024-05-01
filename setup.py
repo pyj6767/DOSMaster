@@ -9,6 +9,8 @@ setup(
     name="dosmaster",
     version=__version__,
     description="DOS(Density Of States) Plot Smartly in Terminal",
+    long_description="DOS(Density Of States) Plot Smartly and Conveniently in Terminal Environment.",
+    long_description_content_type="text/markdown",
     url="https://github.com/pyj6767/DOSMaster",
     author="Youngjun Park, Jaeson Kim in CNMD",
     author_email="yjpark29@postech.ac.kr",
