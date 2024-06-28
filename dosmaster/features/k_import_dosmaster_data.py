@@ -22,10 +22,35 @@ def Import_DOSMaster_Data(data_dict, graph_config):
             if Input_Work2 == '1':
                 with open(os.path.join(current_path, yaml_files[int(Input_Work)]), 'r') as f:
                     imported_dict = yaml.load(f, Loader=yaml.FullLoader)
+                    graph_config_initial = {'figuresize' : [8, 6],
+                                    'axis_label_fontsize' : 13,
+                                    'legend_fontsize' : 13,
+                                    'ticks_fontsize' : 13,
+                                    'title_fontsize' : 13,
+                                    'legend_display' : True,
+                                    'legend_name' : None,
+                                    'legend_name_user' : [False],
+                                    'legend_location' : 'best',
+                                    'bbox_to_anchor' : None,
+                                    'line_width' : 1,
+                                    'xlim' : None,
+                                    'ylim' : None,
+                                    'positive_plot' : True,
+                                    'negative_plot' : True,
+                                    'save_filename' : 'DOS',
+                                    'save_format' : 'pdf',
+                                    'save_dpi' : 200,
+                                    'dos_color' : None,
+                                    'ylim_optimization' : False,
+                                    'shift_x_axis' : 0,
+                                    }
+
                 print('Imported {}'.format(yaml_files[int(Input_Work)]))
                 data_dict['DOS_list'] = imported_dict['data_dict']['DOS_list']
                 data_dict['legend_name_list'] = imported_dict['data_dict']['legend_name_list']
-                graph_config = imported_dict['graph_config']
+                for key, value in imported_dict['graph_config'].items():
+                    graph_config[key]=value
+
                 return data_dict, graph_config
             else:
                 print('Canceled')

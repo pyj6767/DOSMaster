@@ -44,6 +44,8 @@ ver 1.8.8 : Save plot in current directory - ylim optimization 시 오류 수정
 
 ver 1.8.10 : f orbital sum error 수정
 
+ver 1.8.11 : import 순서 error 수정
+
 ## Features
 1) Add Atom DOS : 원하는 atom의 DOS를 추가합니다.
 2) DOS Projection : 특정 DOS를 원하는 orbital로 projection 시킵니다.

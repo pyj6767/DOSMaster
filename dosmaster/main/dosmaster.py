@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #======================================================================================================
-#Script Name : dosmaster Program(ver.1.8.3)
+#Script Name : dosmaster Program(ver.1.8.11)
 #Made by Youngjun Park (yjpark29@postech.ac.kr)
 #Inspired by Jaesun Kim
 #Tested by Changhun Kim, Suyun Chae
