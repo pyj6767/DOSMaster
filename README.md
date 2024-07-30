@@ -9,7 +9,7 @@ Program Name : dosmaster Program
 
 Made by Youngjun Park (yjpark29@postech.ac.kr)
 
-Inspired by Jaesun Kim(CNMD)
+Inspired by Jaeseon Kim(CNMD)
 
 Tested by Changhun Kim(CNMD), Suyun Chae(CNMD)
 
@@ -44,7 +44,7 @@ ver 1.8.8 : Save plot in current directory - ylim optimization 시 오류 수정
 
 ver 1.8.10 : f orbital sum error 수정
 
-ver 1.8.11 : import 순서 error 수정
+ver 1.8.12 : import 순서 error 수정
 
 ## Features
 1) Add Atom DOS : 원하는 atom의 DOS를 추가합니다.
