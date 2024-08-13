@@ -19,9 +19,6 @@ Description : DOS Plot Smartly in Terminal Environment
 
 version.1.8.3 이 되면 CNMD 구성원 전체에게 공개
 
-![DOSMaster](https://github.com/user-attachments/assets/55cc4805-20d4-44d9-b093-2f48e374fca2)
-![GOMCAM20240813_1743320063_edit_1-ezgif com-crop](https://github.com/user-attachments/assets/c190b754-7977-43f1-ae94-a873e1fe0a26)
-
 
 <p align="center">
 <img src="[https://github.com/user-attachments/assets/c190b754-7977-43f1-ae94-a873e1fe0a26](https://github.com/user-attachments/assets/c190b754-7977-43f1-ae94-a873e1fe0a26)" style="width:1000px">
