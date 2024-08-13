@@ -22,7 +22,7 @@ version.1.8.3 이 되면 CNMD 구성원 전체에게 공개
 
 ### Release History
 
-ver.1.1 : 재시작 시 loading 속도 향상 (by Jaesun Kim)
+ver.1.1 : 재시작 시 loading 속도 향상 (by Jaeseon Kim)
 
 ver.1.2 : 최종 data 파일 저장 기능 추가
 
@@ -45,6 +45,8 @@ ver 1.8.8 : Save plot in current directory - ylim optimization 시 오류 수정
 ver 1.8.10 : f orbital sum error 수정
 
 ver 1.8.12 : import 순서 error 수정
+
+ver 1.8.14 : graph_editor-back 기능 수정(suggested by Hyeongbin Park(CNMD))
 
 ## Features
 1) Add Atom DOS : 원하는 atom의 DOS를 추가합니다.
@@ -88,7 +90,7 @@ ver 1.8.12 : import 순서 error 수정
 
 ### Preparation
 
-    $ chmod 774 dosmaster
+    $ chmod 775 dosmaster
 
 ## Run dosmaster
 

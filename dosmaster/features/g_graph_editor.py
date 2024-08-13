@@ -87,6 +87,8 @@ def Graph_Editor(data_dict, graph_config):
             graph_value_input = input('True(1, default) or False(2) : ')
             if graph_value_input == '2':
                 graph_config[key_list[int(graph_index_input)-1]] = False
+            elif graph_value_input == 'q':
+                pass
             else:
                 graph_config[key_list[int(graph_index_input)-1]] = True
         
@@ -238,6 +240,16 @@ def Graph_Editor(data_dict, graph_config):
                         break
                     except:
                         print('Please enter again')
+
+        elif key_list[int(graph_index_input)-1] == 'ylim_optimization':
+            print('Not Support (ver.1.8.14)')
+#            graph_value_input = input('True(1) or False(2, Default) : ')
+#            if graph_value_input == '1':
+#                graph_config[key_list[int(graph_index_input)-1]] = True
+#            elif graph_value_input == 'q':
+#                pass
+#            else:
+#                graph_config[key_list[int(graph_index_input)-1]] = False
             
         else:
             graph_value_input = input('Enter a new value : ')
