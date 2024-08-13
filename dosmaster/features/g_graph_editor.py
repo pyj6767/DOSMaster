@@ -82,7 +82,6 @@ def Graph_Editor(data_dict, graph_config):
             
         elif key_list[int(graph_index_input)-1] == 'dos_color':
             graph_config = color_selection(DOS_list, Labellist, graph_config, color_dict)
-            return graph_config
         
         elif key_list[int(graph_index_input)-1] == 'positive_plot' or key_list[int(graph_index_input)-1] == 'negative_plot':
             graph_value_input = input('True(1, default) or False(2) : ')
@@ -90,7 +89,6 @@ def Graph_Editor(data_dict, graph_config):
                 graph_config[key_list[int(graph_index_input)-1]] = False
             else:
                 graph_config[key_list[int(graph_index_input)-1]] = True
-            return graph_config
         
         elif key_list[int(graph_index_input)-1] == 'figuresize':
             while True:
@@ -105,7 +103,7 @@ def Graph_Editor(data_dict, graph_config):
                     a=float(a_input)
                     b=float(b_input)
                     graph_config[key_list[int(graph_index_input)-1]] = [a,b]
-                    return graph_config
+                    break
                 except:
                     print('Please enter again')
         
@@ -122,7 +120,7 @@ def Graph_Editor(data_dict, graph_config):
                     a=float(a_input)
                     b=float(b_input)
                     graph_config[key_list[int(graph_index_input)-1]] = [a,b]
-                    return graph_config
+                    break
                 except:
                     print('Please enter again')
 
@@ -133,10 +131,10 @@ def Graph_Editor(data_dict, graph_config):
                     break
                 elif a_input == '2':
                     graph_config[key_list[int(graph_index_input)-1]] = False
-                    return graph_config
+                    break
                 else:
                     graph_config[key_list[int(graph_index_input)-1]] = True
-                    return graph_config
+                    break
                 
         elif key_list[int(graph_index_input)-1] == 'legend_name':
             while True:
@@ -200,10 +198,10 @@ def Graph_Editor(data_dict, graph_config):
                 elif a_input == 'outside':
                     graph_config['legend_location'] = 'upper left'
                     graph_config['bbox_to_anchor'] = (1.05, 1.0)
-                    return graph_config
+                    break
                 elif a_input.isdigit() == True:
                     graph_config['legend_location'] = loc_list[int(a_input)-1].split('] ')[1]
-                    return graph_config
+                    break
                 else:
                     print('Please enter again')
             
@@ -220,7 +218,7 @@ def Graph_Editor(data_dict, graph_config):
                 
                 try:
                     graph_config[key_list[int(graph_index_input)-1]] = format_list[int(a_input)-1]
-                    return graph_config
+                    break
                 except:
                     print('Please enter again')
 
@@ -237,7 +235,7 @@ def Graph_Editor(data_dict, graph_config):
                 else:
                     try:
                         graph_config[key_list[int(graph_index_input)-1]] = float(a_input)
-                        return graph_config
+                        break
                     except:
                         print('Please enter again')
             
@@ -246,7 +244,6 @@ def Graph_Editor(data_dict, graph_config):
             try:
                 graph_value=float(graph_value_input)
                 graph_config[key_list[int(graph_index_input)-1]] = graph_value
-                return graph_config
             except:
                 print('Please enter again')
             
