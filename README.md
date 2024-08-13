@@ -20,9 +20,9 @@ Description : DOS Plot Smartly in Terminal Environment
 version.1.8.3 이 되면 CNMD 구성원 전체에게 공개
 
 ![DOSMaster](https://github.com/user-attachments/assets/55cc4805-20d4-44d9-b093-2f48e374fca2)
-![GOMCAM20240813_1743320063_edit_1-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/e6ae61e3-6a4a-4fba-b9b2-f0dfdb55a873)
+
 <p align="center">
-<img src="https://github.com/user-attachments/assets/e6ae61e3-6a4a-4fba-b9b2-f0dfdb55a873" style="width:1200px">
+<img src="https://github.com/user-attachments/assets/7046e1af-ff22-4081-9533-3e8f66699dbe" style="width:1000px">
 </img>
 
 
