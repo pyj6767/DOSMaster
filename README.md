@@ -13,8 +13,6 @@ Inspired by Jaeseon Kim(CNMD)
 
 Tested by Changhun Kim(CNMD), Suyun Chae(CNMD)
 
-Edit Date : 24/03/10
-
 Description : DOS Plot Smartly in Terminal Environment
 
 version.1.8.3 이 되면 CNMD 구성원 전체에게 공개
