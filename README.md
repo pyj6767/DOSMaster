@@ -53,7 +53,8 @@ ver 1.8.10 : f orbital sum error 수정
 
 ver 1.8.12 : import 순서 error 수정
 
-ver 1.8.14 : graph_editor-back 기능 수정(suggested by Hyeongbin Park(CNMD))
+ver 1.8.15 : graph_editor-back 기능 수정(suggested by Hyeongbin Park(CNMD))
+
 
 ## Features
 1) Add Atom DOS : 원하는 atom의 DOS를 추가합니다.
