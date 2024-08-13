@@ -23,7 +23,7 @@ version.1.8.3 이 되면 CNMD 구성원 전체에게 공개
 <img src="https://github.com/user-attachments/assets/e01ac05e-5180-4485-a01d-306459d4a4d6" style="width:1000px">
 </img>
 
-<img src="https://github.com/user-attachments/assets/859c7b95-6acb-49f6-bf01-2ecfadc00ba6" style="width:1000px">
+<img src="https://github.com/user-attachments/assets/859c7b95-6acb-49f6-bf01-2ecfadc00ba6" style="width:800px">
 </img>
 </p>
 
