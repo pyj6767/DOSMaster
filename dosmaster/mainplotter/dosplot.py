@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import os
 
-from dosmaster.subplotter.dosplot_manager import get_current_DOS, split_dos_parser, data_collection, Get_DOS_Label, Get_DOS_Legend_User
+from dosmaster.subplotter.dosplot_manager import get_current_DOS, split_dos_parser, data_collection, Get_DOS_Label, Get_DOS_Legend_User, gaussian_smearing
 from dosmaster.base.data_generation import list_to_string_name
 
 def DOSplot(data_dict, graph_config):
@@ -28,6 +28,8 @@ def DOSplot(data_dict, graph_config):
                 Total_DOS = True
                 energy_save, dos_up, dos_down=split_dos_parser('total', dos_object_total_dos, DOS_temp, orbital_list)
                 energy = graph_config['shift_x_axis'] + np.array(energy_save)
+                if graph_config['smearing'] != 0:
+                    energy, dos_up, dos_down = gaussian_smearing(energy, dos_up, dos_down, graph_config['smearing'])
                 if graph_config['positive_plot'] == True:
                     plt.plot(energy, dos_up, color = color_dict[graph_config['dos_color'][list_to_string_name(DOS_temp)]['color']], 
                              linewidth=graph_config['line_width'], label=graph_config['legend_name'][index])
@@ -54,7 +56,8 @@ def DOSplot(data_dict, graph_config):
                     else:
                         dos_up_sum += dos_up
                         dos_down_sum += dos_down
-                        
+                if graph_config['smearing'] != 0:
+                    energy, dos_up_sum, dos_down_sum = gaussian_smearing(energy, dos_up_sum, dos_down_sum, graph_config['smearing'])
                 if graph_config['positive_plot'] == True:
                     plt.plot(energy, dos_up_sum, color = color_dict[graph_config['dos_color'][list_to_string_name(DOS_temp)]['color']], 
                              linewidth=graph_config['line_width'], label = graph_config['legend_name'][index])
@@ -71,6 +74,8 @@ def DOSplot(data_dict, graph_config):
             else:
                 energy_save, dos_up, dos_down = split_dos_parser(str(DOS_temp.split('_')[0]), dos_object_list[int(DOS_temp.split('_')[0])-1], DOS_temp, orbital_list)
                 energy = graph_config['shift_x_axis'] + np.array(energy_save)
+                if graph_config['smearing'] != 0:
+                    energy, dos_up, dos_down = gaussian_smearing(energy, dos_up, dos_down, graph_config['smearing'])
                 if graph_config['positive_plot'] == True:
                     plt.plot(energy, dos_up, color = color_dict[graph_config['dos_color'][list_to_string_name(DOS_temp)]['color']], 
                              linewidth=graph_config['line_width'], label = graph_config['legend_name'][index])
@@ -118,7 +123,8 @@ def DOSplot(data_dict, graph_config):
                     dos_down_sum = dos_down_sum/len(DOS_temp)
             except:
                 pass
-                    
+            if graph_config['smearing'] != 0:
+                energy, dos_up_sum, dos_down_sum = gaussian_smearing(energy, dos_up_sum, dos_down_sum, graph_config['smearing'])
             if graph_config['positive_plot'] == True:
                 plt.plot(energy, dos_up_sum, color = color_dict[graph_config['dos_color'][list_to_string_name(DOS_temp)]['color']], 
                          linewidth=graph_config['line_width'], label = graph_config['legend_name'][index])

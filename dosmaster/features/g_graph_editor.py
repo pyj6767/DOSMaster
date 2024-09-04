@@ -242,7 +242,7 @@ def Graph_Editor(data_dict, graph_config):
                         print('Please enter again')
 
         elif key_list[int(graph_index_input)-1] == 'ylim_optimization':
-            print('Not Support (ver.1.8.14)')
+            print('Not Support in graph editor (ver.1.8.14)')
 #            graph_value_input = input('True(1) or False(2, Default) : ')
 #            if graph_value_input == '1':
 #                graph_config[key_list[int(graph_index_input)-1]] = True
@@ -250,6 +250,18 @@ def Graph_Editor(data_dict, graph_config):
 #                pass
 #            else:
 #                graph_config[key_list[int(graph_index_input)-1]] = False
+
+        elif key_list[int(graph_index_input)-1] == 'smearing':
+            while True:
+                graph_value_input = input('Please enther "Sigma value" for Gaussian Smearing (ex : 0.2, 0.3, ...) [0 : No smearing] : ')
+                if graph_value_input == 'q':
+                    break
+                else:
+                    try:
+                        graph_config[key_list[int(graph_index_input)-1]] = float(graph_value_input)
+                        break
+                    except:
+                        print('The value must be float!')
             
         else:
             graph_value_input = input('Enter a new value : ')

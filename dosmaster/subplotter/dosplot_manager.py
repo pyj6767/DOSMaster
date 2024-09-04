@@ -187,3 +187,30 @@ def data_collection(data_list, is_save, graph_config, energy, dos_data):
         else:
             data_list.append(dos_data)
     return data_list
+
+
+def gaussian_smearing(energy, dos_up, dos_down, sigma):
+    # Define a finer energy grid for smoother DOS
+    grid_mesh = len(energy) * 10
+    energy_grid = np.linspace(min(energy), max(energy), grid_mesh)
+    
+    # Calculate the spacing of the original energy grid
+    delta_e = energy[1] - energy[0]
+
+    # Gaussian smearing for spin-up DOS
+    smeared_dos_up = np.zeros_like(energy_grid)
+    for e, d in zip(energy, dos_up):
+        gauss = np.exp(-(energy_grid - e)**2 / (2 * sigma**2))
+        smeared_dos_up += d * gauss
+    
+    smeared_dos_up *= delta_e / (sigma * np.sqrt(2 * np.pi))
+
+    # Gaussian smearing for spin-down DOS
+    smeared_dos_down = np.zeros_like(energy_grid)
+    for e, d in zip(energy, dos_down):
+        gauss = np.exp(-(energy_grid - e)**2 / (2 * sigma**2))
+        smeared_dos_down += d * gauss
+    
+    smeared_dos_down *= delta_e / (sigma * np.sqrt(2 * np.pi))
+
+    return energy_grid, smeared_dos_up, smeared_dos_down

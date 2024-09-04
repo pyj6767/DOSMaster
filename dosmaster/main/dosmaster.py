@@ -91,6 +91,7 @@ def main():
                     'dos_color' : {list_to_string_name(data_dict['DOS_list'][0]) : {'color':'gray', 'User_Edit':None}},
                     'ylim_optimization' : False,
                     'shift_x_axis' : 0,
+                    'smearing' : 0.0
                     }    
     
     StartMessage()
