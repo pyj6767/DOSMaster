@@ -36,6 +36,7 @@ setup(
         "ase>=3.22.1",
         "colorama>=0.4.6",
         "PyYAML",
+        'importlib-metadata',
     ],
     package_data={
         "dosmaster": [
