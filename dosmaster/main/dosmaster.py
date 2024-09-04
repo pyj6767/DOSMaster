@@ -34,7 +34,7 @@ from dosmaster.subplotter.dosplot_manager import *
 
 from dosmaster.base.printer import print_current_DOS
 from dosmaster.base.data_generation import make_data_dict, list_to_string_name, Dos_Color_Update
-from dosmaster.package_version_check import notify_if_new_version
+from dosmaster.base.package_version_check import notify_if_new_version
 from dosmaster.mainplotter.dosplot import DOSplot
 
 from dosmaster.features.a_add_atom_dos import Add_Atom_DOS
