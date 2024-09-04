@@ -57,7 +57,7 @@ ver 1.8.15 : graph_editor-back 기능 수정(suggested by Hyeongbin Park(CNMD))
 
 ver 1.8.16 : gaussian smearing 기능 추가(contributed by Siyeong Park(CNMD))
 
-ver 1.8.18 : package version 확인 기능 추가
+ver 1.8.19 : package version 확인 기능 추가
 
 ## Features
 1) Add Atom DOS : 원하는 atom의 DOS를 추가합니다.
