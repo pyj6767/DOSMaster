@@ -37,6 +37,7 @@ setup(
         "colorama>=0.4.6",
         "PyYAML",
         'importlib-metadata',
+        'requests',
     ],
     package_data={
         "dosmaster": [
