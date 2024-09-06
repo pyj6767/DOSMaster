@@ -12,7 +12,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/pyj6767/DOSMaster",
-    author="Youngjun Park, Jaeson Kim in CNMD",
+    author="Youngjun Park, Jaeseon Kim in CNMD",
     author_email="yjpark29@postech.ac.kr",
     #long_description=long_description,
     license="MIT",
