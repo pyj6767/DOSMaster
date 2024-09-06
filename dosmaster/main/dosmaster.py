@@ -49,6 +49,7 @@ from dosmaster.features.i_import_custom_setting import Import_Custom_Setting
 from dosmaster.features.j_save_custom_setting import Save_Custom_Setting
 from dosmaster.features.k_import_dosmaster_data import Import_DOSMaster_Data
 from dosmaster.features.l_save_dosmaster_data import Save_DOSMaster_Data
+from dosmaster.features.m_save_plot_script import Save_Plot_Script
 
 
 
@@ -114,6 +115,7 @@ def main():
         print('10 : Save global custom setting (in package)')
         print('11 : Import DOSMaster plot from current directory')
         print('12 : Save DOSMaster plot in current directory')
+        print('13 : Save Plot as Scripts using python or gnuplot')
         print('==================================================================================================================')
         Input_Work=input('Choice : ')
         print('-'*80)
@@ -151,6 +153,8 @@ def main():
             data_dict, graph_config = Import_DOSMaster_Data(data_dict, graph_config)
         elif Input_Work == '12':
             data_dict, graph_config = Save_DOSMaster_Data(data_dict, graph_config)
+        elif Input_Work == '13':
+            data_dict, graph_config = Save_Plot_Script(data_dict, graph_config)
 
         
         # Modified DOS Plot

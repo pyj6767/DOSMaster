@@ -59,6 +59,8 @@ ver 1.8.16 : gaussian smearing 기능 추가(contributed by Siyeong Park(CNMD))
 
 ver 1.8.22 : package version 확인 기능 추가
 
+ver 1.8.24 : PROCAR 버그 수정 및 code generator 구현중
+
 ## Features
 1) Add Atom DOS : 원하는 atom의 DOS를 추가합니다.
 2) DOS Projection : 특정 DOS를 원하는 orbital로 projection 시킵니다.

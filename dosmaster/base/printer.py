@@ -85,7 +85,9 @@ def Make_DOS_Dataframe():
 
         #3. Convert dos_data[each] to table(df)
         dos_object_total_dos = pd.DataFrame(dos_data_total_list)
-        column_names = column_names[:len(dos_object_list[0][0])]
+        if path.exists("PROCAR") == False:
+            column_names = column_names[:len(dos_object_list[0][0])]
+            orbital_list = orbital_list[:int((len(column_names)-1)/2)]
         dos_object_list=[pd.DataFrame(dos_object, columns=column_names) for dos_object in dos_object_list]
         
         dos_data_total=[dos_object_total_dos, dos_object_list, orbital_list]

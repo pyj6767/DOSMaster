@@ -2,11 +2,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import os
+import yaml
 
 from dosmaster.subplotter.dosplot_manager import get_current_DOS, split_dos_parser, data_collection, Get_DOS_Label, Get_DOS_Legend_User, gaussian_smearing
 from dosmaster.base.data_generation import list_to_string_name
 
-def DOSplot(data_dict, graph_config):
+def Save_Data(data_dict, graph_config):
     DOS_list = data_dict['DOS_list']
     Labellist = data_dict['Labellist']
     color_dict = data_dict['color_dict']
@@ -17,8 +18,7 @@ def DOSplot(data_dict, graph_config):
     
     graph_config['legend_name'] = Get_DOS_Label(DOS_list, Labellist, graph_config)
     graph_config = Get_DOS_Legend_User(graph_config)
-
-    plt.figure(figsize=(graph_config['figuresize'][0],graph_config['figuresize'][1]))
+    
     Total_DOS=False
     data_list_up=[]
     data_list_down=[]
@@ -30,6 +30,164 @@ def DOSplot(data_dict, graph_config):
                 energy = graph_config['shift_x_axis'] + np.array(energy_save)
                 if graph_config['smearing'] != 0:
                     energy, dos_up, dos_down = gaussian_smearing(energy, dos_up, dos_down, graph_config['smearing'])
+                if graph_config['positive_plot'] == True:
+                    data_list_up=data_collection(data_list_up, True, graph_config, energy, dos_up)
+                if graph_config['positive_plot'] == True and graph_config['negative_plot'] == True:
+                    data_list_down=data_collection(data_list_down, True, graph_config, energy, dos_down)
+                if graph_config['positive_plot'] == False and graph_config['negative_plot'] == True:
+                    data_list_down=data_collection(data_list_down, True, graph_config, energy, dos_down)
+
+            elif DOS_temp.split('_')[0] == 'Total DOS' and DOS_temp.split('_')[1] != 'all':
+                orbital=DOS_temp.split('_')[1]
+                dos_up_sum = 0
+                dos_down_sum = 0
+                for label_index, label in enumerate(Labellist):
+                    energy_save, dos_up, dos_down = split_dos_parser(str(label_index+1), dos_object_list[label_index], str(label_index+1)+'_'+str(orbital), orbital_list)
+                    energy = graph_config['shift_x_axis'] + np.array(energy_save)
+                    if index == 0:
+                        dos_up_sum = dos_up
+                        dos_down_sum = dos_down
+                    else:
+                        dos_up_sum += dos_up
+                        dos_down_sum += dos_down
+                if graph_config['smearing'] != 0:
+                    energy, dos_up_sum, dos_down_sum = gaussian_smearing(energy, dos_up_sum, dos_down_sum, graph_config['smearing'])
+                if graph_config['positive_plot'] == True:
+                    data_list_up=data_collection(data_list_up, True, graph_config, energy, dos_up_sum)
+                if graph_config['positive_plot'] == True and graph_config['negative_plot'] == True:
+                    data_list_down=data_collection(data_list_down, True, graph_config, energy, dos_down_sum)
+                if graph_config['positive_plot'] == False and graph_config['negative_plot'] == True:
+                    data_list_down=data_collection(data_list_down, True, graph_config, energy, dos_down_sum)
+                
+            else:
+                energy_save, dos_up, dos_down = split_dos_parser(str(DOS_temp.split('_')[0]), dos_object_list[int(DOS_temp.split('_')[0])-1], DOS_temp, orbital_list)
+                energy = graph_config['shift_x_axis'] + np.array(energy_save)
+                if graph_config['smearing'] != 0:
+                    energy, dos_up, dos_down = gaussian_smearing(energy, dos_up, dos_down, graph_config['smearing'])
+                if graph_config['positive_plot'] == True:
+                    data_list_up=data_collection(data_list_up, True, graph_config, energy, dos_up)
+                if graph_config['positive_plot'] == True and graph_config['negative_plot'] == True:
+                    data_list_down=data_collection(data_list_down, True, graph_config, energy, dos_down)
+                if graph_config['positive_plot'] == False and graph_config['negative_plot'] == True:
+                    data_list_down=data_collection(data_list_down, True, graph_config, energy, dos_down)
+            
+        elif isinstance(DOS_temp, list) == True:
+            dos_up_sum = 0
+            dos_down_sum = 0
+            for element_index, element in enumerate(DOS_temp):
+                if element.split('_')[0] == 'Total DOS' and element.split('_')[1] != 'all':
+                    orbital=element.split('_')[1]
+                    for label_index, label in enumerate(Labellist):
+                        energy_save, dos_up, dos_down = split_dos_parser(str(label_index+1), dos_object_list[label_index], str(label_index+1)+'_'+str(orbital), orbital_list)
+                        energy = graph_config['shift_x_axis'] + np.array(energy_save)
+                        if index == 0:
+                            dos_up_sum = dos_up
+                            dos_down_sum = dos_down
+                        else:
+                            dos_up_sum += dos_up
+                            dos_down_sum += dos_down
+                else:
+                    energy_save, dos_up, dos_down = split_dos_parser(str(element.split('_')[0]), dos_object_list[int(element.split('_')[0])-1], element, orbital_list)
+                    energy = graph_config['shift_x_axis'] + np.array(energy_save)
+                    if element_index == 0:
+                        dos_up_sum = dos_up
+                        dos_down_sum = dos_down
+                    else:
+                        dos_up_sum += dos_up
+                        dos_down_sum += dos_down
+                    
+            try:
+                if DOS_temp[0].split('_')[2] == 'avg':
+                    dos_up_sum = dos_up_sum/len(DOS_temp)
+                    dos_down_sum = dos_down_sum/len(DOS_temp)
+            except:
+                pass
+            if graph_config['smearing'] != 0:
+                energy, dos_up_sum, dos_down_sum = gaussian_smearing(energy, dos_up_sum, dos_down_sum, graph_config['smearing'])
+            if graph_config['positive_plot'] == True:
+                data_list_up=data_collection(data_list_up, True, graph_config, energy, dos_up_sum)
+            if graph_config['positive_plot'] == True and graph_config['negative_plot'] == True:
+                data_list_down=data_collection(data_list_down, True, graph_config, energy, dos_down_sum)
+            if graph_config['positive_plot'] == False and graph_config['negative_plot'] == True:
+                data_list_down=data_collection(data_list_down, True, graph_config, energy, dos_down_sum)
+
+    table_name_list = get_current_DOS(DOS_list, Labellist, graph_config)
+    table_name_list.insert(0, 'Energy')
+    dos_data_up = np.array(np.array(data_list_up).T)
+    dos_data_down = np.array(data_list_down).T
+    
+    if len(data_list_up) != 0:
+        up_df=pd.DataFrame(dos_data_up, columns=table_name_list)
+        up_number = 1
+        up_file_name = './Up_DOS_Data_{}.csv'.format(up_number)
+        while os.path.exists(up_file_name) == True:
+            if os.path.exists(up_file_name):
+                up_number += 1
+                up_file_name = './Up_DOS_Data_{}.csv'.format(up_number)
+            else:
+                break
+        up_df.to_csv(up_file_name, sep='\t', index=False)
+        print('{} is saved!'.format(up_file_name))
+    if len(data_list_down) != 0:
+        down_df=pd.DataFrame(dos_data_down, columns=table_name_list)
+        down_number = 1
+        down_file_name = './Down_DOS_Data_{}.csv'.format(down_number)
+        while os.path.exists(down_file_name) == True:
+            if os.path.exists(down_file_name):
+                down_number += 1
+                down_file_name = './Down_DOS_Data_{}.csv'.format(down_number)
+            else:
+                break
+        down_df.to_csv(down_file_name, sep='\t', index=False)
+        print('{} is saved!'.format(down_file_name))
+
+    return up_file_name, down_file_name
+
+def Save_Plot_Script(data_dict, graph_config):
+    up_file_name, down_file_name = Save_Data(data_dict, graph_config)
+
+    script_file_name = './python_script.py'
+    code_text = f'''
+import pandas as pd
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=({graph_config['figuresize'][0]},{graph_config['figuresize'][1]}))
+
+# Reading the CSV file into a DataFrame (Replace 'data.csv' with your actual file path)
+df = pd.read_csv('{up_file_name}', sep='\t')
+
+# Get the column names automatically
+columns = df.columns
+
+# 'Energy' will be the x-axis
+x = df[columns[0]]
+
+# Iterate through the rest of the columns to create a plot for each
+for col in columns[1:]:
+    plt.plot(x, df[col], label=col)
+
+# Reading the CSV file into a DataFrame (Replace 'data.csv' with your actual file path)
+df = pd.read_csv('{down_file_name}', sep='\t')
+
+# Get the column names automatically
+columns = df.columns
+
+# 'Energy' will be the x-axis
+x = df[columns[0]]
+
+# Iterate through the rest of the columns to create a plot for each
+for col in columns[1:]:
+    plt.plot(x, df[col], label=col)
+
+plt.show()
+    '''
+
+    with open(script_file_name, 'w') as f:
+        f.write(code_text)
+    
+    for index, DOS_temp in enumerate(DOS_list):
+        if isinstance(DOS_temp, list) == False:
+            if DOS_temp=='Total DOS_all':
                 if graph_config['positive_plot'] == True:
                     plt.plot(energy, dos_up, color = color_dict[graph_config['dos_color'][list_to_string_name(DOS_temp)]['color']], 
                              linewidth=graph_config['line_width'], label=graph_config['legend_name'][index])
@@ -161,40 +319,5 @@ def DOSplot(data_dict, graph_config):
         
     else:
         plt.ylim([graph_config['ylim'][0], graph_config['ylim'][1]])
-    
-    if is_save == True:
-        plt.savefig(graph_config['save_filename']+'.'+graph_config['save_format'], dpi=graph_config['save_dpi'])
-        table_name_list = get_current_DOS(DOS_list, Labellist, graph_config)
-        table_name_list.insert(0, 'Energy')
-        dos_data_up = np.array(np.array(data_list_up).T)
-        dos_data_down = np.array(data_list_down).T
-        
-        if len(data_list_up) != 0:
-            up_df=pd.DataFrame(dos_data_up, columns=table_name_list)
-            number = 1
-            file_name = './Up_DOS_Data_{}.csv'.format(number)
-            while os.path.exists(file_name) == True:
-                if os.path.exists(file_name):
-                    number += 1
-                    file_name = './Up_DOS_Data_{}.csv'.format(number)
-                else:
-                    break
-            up_df.to_csv(file_name, sep='\t', index=False)
-            print('{} is saved!'.format(file_name))
-        if len(data_list_down) != 0:
-            down_df=pd.DataFrame(dos_data_down, columns=table_name_list)
-            number = 1
-            file_name = './Down_DOS_Data_{}.csv'.format(number)
-            while os.path.exists(file_name) == True:
-                if os.path.exists(file_name):
-                    number += 1
-                    file_name = './Down_DOS_Data_{}.csv'.format(number)
-                else:
-                    break
-            down_df.to_csv(file_name, sep='\t', index=False)
-            print('{} is saved!'.format(file_name))
-        
-    plt.show()
 
-    
-    return graph_config
+    return data_dict, graph_config
