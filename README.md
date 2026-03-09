@@ -7,7 +7,7 @@
 **Author:** Youngjun Park (yjpark29@postech.ac.kr)  
 **Inspired by:** Jaeseon Kim (CNMD)  
 **Tested by:** Changhun Kim (CNMD), Suyun Chae (CNMD)  
-**Description:** Smartly plot Density of States (DOS) in a terminal environment.
+**Description:** A smart, highly customizable DOS plotting tool designed for terminal environments.
 
 > Version 1.8.3 and above will be publicly released to all CNMD members.
 
