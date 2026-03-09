@@ -64,9 +64,13 @@
 ## Installation
 
 ### Install via PyPI
-
+1. Installation
 ```bash
 pip install dosmaster
+```
+2. Run DOSMaster
+```bash
+dosmaster
 ```
 
 ### Install from Source
