@@ -53,11 +53,36 @@
 5. **Remove DOS** — Remove a specific DOS from the plot.
 6. **Plot only Positive/Negative Part** — Display only the positive or negative region of the DOS plot.
 7. **Edit Graph Style** — Customize the graph style to your preference.
-8. **Axis Optimization** — Automatically optimize the y-axis limits to fit the current DOS.
-9. **Import Global Custom Setting** — Load your personal graph settings from the package folder.
-10. **Save Global Custom Setting** — Save your personal graph settings to the package folder.
-11. **Import DOSMaster Plot** — Load a previously saved DOSMaster plot from the current directory.
-12. **Save DOSMaster Plot** — Save the current DOSMaster plot to the current directory.
+
+   | Index | Parameter | Description |
+   |:-----:|-----------|-------------|
+   | 1 | `figuresize` | Overall size of the figure (width × height) |
+   | 2 | `axis_label_fontsize` | Font size of the x/y axis labels |
+   | 3 | `legend_fontsize` | Font size of the legend text |
+   | 4 | `ticks_fontsize` | Font size of the axis tick labels |
+   | 5 | `title_fontsize` | Font size of the plot title |
+   | 6 | `legend_display` | Toggle legend visibility on/off |
+   | 7 | `legend_name` | Default legend label for each DOS entry |
+   | 8 | `legend_name_user` | User-defined custom legend labels |
+   | 9 | `legend_location` | Position of the legend within the plot |
+   | 10 | `bbox_to_anchor` | Fine-tune legend position using anchor coordinates |
+   | 11 | `line_width` | Line width of the plotted DOS curves |
+   | 12 | `xlim` | x-axis range (energy range) |
+   | 13 | `ylim` | y-axis range (DOS intensity range) |
+   | 14 | `positive_plot` | Toggle display of the positive DOS region |
+   | 15 | `negative_plot` | Toggle display of the negative DOS region |
+   | 16 | `save_filename` | Output filename when saving the plot |
+   | 17 | `save_format` | File format for saving (e.g. png, pdf, svg) |
+   | 18 | `save_dpi` | Resolution (DPI) of the saved plot |
+   | 19 | `dos_color` | Color of each DOS curve |
+   | 20 | `ylim_optimization` | Enable automatic y-axis limit optimization |
+   | 21 | `shift_x_axis` | Shift the x-axis by a fixed energy offset |
+   | 22 | `smearing` | Apply Gaussian smearing to smooth the DOS curves |
+9. **Axis Optimization** — Automatically optimize the y-axis limits to fit the current DOS.
+10. **Import Global Custom Setting** — Load your personal graph settings from the package folder.
+11. **Save Global Custom Setting** — Save your personal graph settings to the package folder.
+12. **Import DOSMaster Plot** — Load a previously saved DOSMaster plot from the current directory.
+13. **Save DOSMaster Plot** — Save the current DOSMaster plot to the current directory.
 
 ---
 
