@@ -80,29 +80,16 @@ pip install dosmaster
    ```bash
    git clone git@github.com:pyj6767/DOSMaster.git
    ```
-
----
-
-## Requirements
-
+4. Requirements
 ```bash
 pip install matplotlib numpy pandas ase colorama
 ```
-
----
-
-## Usage
-
-### Set Permissions
-
+5. Set Permissions
 ```bash
 chmod 775 dosmaster
 ```
-
-### Run DOSMaster
-
+6. Run DOSMaster
 Navigate to the directory containing your DOS calculation results and run:
-
 ```bash
 cd [your DOS calculation folder]
 dosmaster
