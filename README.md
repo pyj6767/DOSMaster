@@ -41,6 +41,7 @@
 | 1.8.16 | Added Gaussian smearing feature (contributed by Siyeong Park, CNMD) |
 | 1.8.22 | Added package version check feature |
 | 1.8.24 | Fixed PROCAR bug; code generator in development |
+| 1.8.25 | README update |
 
 ---
 
