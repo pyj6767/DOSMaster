@@ -12,11 +12,11 @@
 > Version 1.8.3 and above will be publicly released to all CNMD members.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/e01ac05e-5180-4485-a01d-306459d4a4d6" style="width:800px"/>
-</p>
+<img src="https://github.com/user-attachments/assets/e01ac05e-5180-4485-a01d-306459d4a4d6" style="width:600px">
+</img>
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/859c7b95-6acb-49f6-bf01-2ecfadc00ba6" style="width:800px"/>
+<img src="https://github.com/user-attachments/assets/859c7b95-6acb-49f6-bf01-2ecfadc00ba6" style="width:600px">
+</img>
 </p>
 
 ---
