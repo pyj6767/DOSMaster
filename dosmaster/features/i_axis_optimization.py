@@ -1,4 +1,4 @@
-from dosmaster.subplotter.dosplot_manager import get_current_DOS, split_dos_parser, data_collection, Get_DOS_Label
+from dosmaster.subplotter.dosplot_manager import get_current_DOS, split_dos_parser, data_collection, Get_DOS_Label, get_dos_divisor
 import pandas as pd
 import numpy as np
 
@@ -25,6 +25,9 @@ def Axis_Optimization(data_dict, graph_config):
             if DOS_temp=='Total DOS_all':
                 Total_DOS = True
                 energy, dos_up, dos_down=split_dos_parser('total', dos_object_total_dos, DOS_temp, orbital_list)
+                divisor = get_dos_divisor(DOS_temp, Labellist, graph_config)
+                dos_up = dos_up / divisor
+                dos_down = dos_down / divisor
                 if graph_config['positive_plot'] == True:
                     data_list_up=data_collection(data_list_up, is_save_optimization, graph_config, energy, dos_up)
                 if graph_config['positive_plot'] == True and graph_config['negative_plot'] == True:
@@ -44,7 +47,10 @@ def Axis_Optimization(data_dict, graph_config):
                     else:
                         dos_up_sum += dos_up
                         dos_down_sum += dos_down
-                        
+
+                divisor = get_dos_divisor(DOS_temp, Labellist, graph_config)
+                dos_up_sum = dos_up_sum / divisor
+                dos_down_sum = dos_down_sum / divisor
                 if graph_config['positive_plot'] == True:
                     data_list_up=data_collection(data_list_up, is_save_optimization, graph_config, energy, dos_up_sum)
                 if graph_config['positive_plot'] == True and graph_config['negative_plot'] == True:
@@ -54,6 +60,9 @@ def Axis_Optimization(data_dict, graph_config):
                 
             else:
                 energy, dos_up, dos_down = split_dos_parser(str(DOS_temp.split('_')[0]), dos_object_list[int(DOS_temp.split('_')[0])-1], DOS_temp, orbital_list)
+                divisor = get_dos_divisor(DOS_temp, Labellist, graph_config)
+                dos_up = dos_up / divisor
+                dos_down = dos_down / divisor
                 if graph_config['positive_plot'] == True:
                     data_list_up=data_collection(data_list_up, is_save_optimization, graph_config, energy, dos_up)
                 if graph_config['positive_plot'] == True and graph_config['negative_plot'] == True:
@@ -79,7 +88,10 @@ def Axis_Optimization(data_dict, graph_config):
                     dos_down_sum = dos_down_sum/len(DOS_temp)
             except:
                 pass
-                    
+
+            divisor = get_dos_divisor(DOS_temp, Labellist, graph_config)
+            dos_up_sum = dos_up_sum / divisor
+            dos_down_sum = dos_down_sum / divisor
             if graph_config['positive_plot'] == True:
                 data_list_up=data_collection(data_list_up, is_save_optimization, graph_config, energy, dos_up_sum)
             if graph_config['positive_plot'] == True and graph_config['negative_plot'] == True:
