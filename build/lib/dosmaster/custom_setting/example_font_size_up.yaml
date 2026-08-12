@@ -1,0 +1,17 @@
+axis_label_fontsize: 18
+bbox_to_anchor: null
+figuresize:
+- 12
+- 8
+legend_display: true
+legend_fontsize: 18.0
+legend_location: best
+line_width: 1
+negative_plot: true
+positive_plot: true
+save_dpi: 200
+save_filename: DOS
+save_format: pdf
+shift_x_axis: 0
+ticks_fontsize: 18
+title_fontsize: 18

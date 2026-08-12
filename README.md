@@ -42,6 +42,7 @@
 | 1.8.22 | Added package version check feature |
 | 1.8.24 | Fixed PROCAR bug; code generator in development |
 | 1.8.25 | README update |
+| 1.9.0  | Add divide_by_n_of_atoms & save plot as .ipynb script |
 
 ---
 
@@ -50,10 +51,11 @@
 1. **Add Atom DOS** — Add the DOS of a desired atom to the plot.
 2. **DOS Projection** — Project a specific DOS onto a desired orbital.
 3. **Sum DOS** — Sum the contributions of selected DOS entries.
-4. **Average DOS** — Average the contributions of selected DOS entries.
-5. **Remove DOS** — Remove a specific DOS from the plot.
-6. **Plot only Positive/Negative Part** — Display only the positive or negative region of the DOS plot.
-7. **Edit Graph Style** — Customize the graph style to your preference.
+4. **Divide DOS by Number of Atoms** — Divide each DOS by the number of atoms that compose it, correctly handling DOS lines made of different numbers of atoms.
+5. **Average DOS** — Average the contributions of selected DOS entries.
+6. **Remove DOS** — Remove a specific DOS from the plot.
+7. **Plot only Positive/Negative Part** — Display only the positive or negative region of the DOS plot.
+8. **Edit Graph Style** — Customize the graph style to your preference.
 
    | Index | Parameter | Description |
    |:-----:|-----------|-------------|
@@ -84,6 +86,7 @@
 11. **Save Global Custom Setting** — Save your personal graph settings to the package folder.
 12. **Import DOSMaster Plot** — Load a previously saved DOSMaster plot from the current directory.
 13. **Save DOSMaster Plot** — Save the current DOSMaster plot to the current directory.
+14. **Save Plot Script** — Save the currently drawn DOS as CSV files and generate a Jupyter notebook (`.ipynb`) that reproduces the exact plot.
 
 ---
 
