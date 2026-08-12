@@ -42,7 +42,7 @@
 | 1.8.22 | Added package version check feature |
 | 1.8.24 | Fixed PROCAR bug; code generator in development |
 | 1.8.25 | README update |
-| 1.9.1  | Add divide_by_n_of_atoms & save plot as .ipynb script |
+| 1.9.3  | Add divide_by_n_of_atoms & save plot as .ipynb script |
 
 ---
 
