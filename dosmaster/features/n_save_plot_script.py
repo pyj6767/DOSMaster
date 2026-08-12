@@ -4,7 +4,7 @@ import os
 import json
 from colorama import Fore, Back, Style
 
-from dosmaster.subplotter.dosplot_manager import get_current_DOS, split_dos_parser, data_collection, Get_DOS_Label, Get_DOS_Legend_User, gaussian_smearing
+from dosmaster.subplotter.dosplot_manager import get_current_DOS, split_dos_parser, data_collection, Get_DOS_Label, Get_DOS_Legend_User, gaussian_smearing, get_dos_divisor
 from dosmaster.base.data_generation import list_to_string_name
 
 def get_unique_filename(template, name):
@@ -33,6 +33,9 @@ def Save_Data(data_dict, graph_config, csv_name):
             if DOS_temp=='Total DOS_all':
                 energy_save, dos_up, dos_down=split_dos_parser('total', dos_object_total_dos, DOS_temp, orbital_list)
                 energy = graph_config['shift_x_axis'] + np.array(energy_save)
+                divisor = get_dos_divisor(DOS_temp, Labellist, graph_config)
+                dos_up = dos_up / divisor
+                dos_down = dos_down / divisor
                 if graph_config['smearing'] != 0:
                     energy, dos_up, dos_down = gaussian_smearing(energy, dos_up, dos_down, graph_config['smearing'])
                 if graph_config['positive_plot'] == True:
@@ -55,6 +58,9 @@ def Save_Data(data_dict, graph_config, csv_name):
                     else:
                         dos_up_sum += dos_up
                         dos_down_sum += dos_down
+                divisor = get_dos_divisor(DOS_temp, Labellist, graph_config)
+                dos_up_sum = dos_up_sum / divisor
+                dos_down_sum = dos_down_sum / divisor
                 if graph_config['smearing'] != 0:
                     energy, dos_up_sum, dos_down_sum = gaussian_smearing(energy, dos_up_sum, dos_down_sum, graph_config['smearing'])
                 if graph_config['positive_plot'] == True:
@@ -67,6 +73,9 @@ def Save_Data(data_dict, graph_config, csv_name):
             else:
                 energy_save, dos_up, dos_down = split_dos_parser(str(DOS_temp.split('_')[0]), dos_object_list[int(DOS_temp.split('_')[0])-1], DOS_temp, orbital_list)
                 energy = graph_config['shift_x_axis'] + np.array(energy_save)
+                divisor = get_dos_divisor(DOS_temp, Labellist, graph_config)
+                dos_up = dos_up / divisor
+                dos_down = dos_down / divisor
                 if graph_config['smearing'] != 0:
                     energy, dos_up, dos_down = gaussian_smearing(energy, dos_up, dos_down, graph_config['smearing'])
                 if graph_config['positive_plot'] == True:
@@ -107,6 +116,9 @@ def Save_Data(data_dict, graph_config, csv_name):
                     dos_down_sum = dos_down_sum/len(DOS_temp)
             except:
                 pass
+            divisor = get_dos_divisor(DOS_temp, Labellist, graph_config)
+            dos_up_sum = dos_up_sum / divisor
+            dos_down_sum = dos_down_sum / divisor
             if graph_config['smearing'] != 0:
                 energy, dos_up_sum, dos_down_sum = gaussian_smearing(energy, dos_up_sum, dos_down_sum, graph_config['smearing'])
             if graph_config['positive_plot'] == True:
