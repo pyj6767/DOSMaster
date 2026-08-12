@@ -1,3 +1,0 @@
-"""
-Subpackage for DOSplot function.
-"""
