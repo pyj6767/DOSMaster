@@ -1,12 +1,12 @@
 import csv
 
 # Color list to csv
-Default_Color_list = ['gray', 'red', 'blue', 'green', 'darkorange', 'magenta', 'lightcoral', 'khaki', 'forestgreen', 'darkslategray', 
+Default_Color_list = ['gray', 'crimson', 'royalblue', 'seagreen', 'darkorange', 'magenta', 'lightcoral', 'khaki', 'forestgreen', 'darkslategray', 
                     'slategrey', 'navy', 'darkorchid', 'lightpink', 'darkgoldenrod', 'chartreuse', 'aqua', 'lightblue', 
-                    'midnightblue', 'violet', 'darkred', 'coral', 'seagreen', 'paleturquoise', 'dodgerblue', 'cornflowerblue', 
-                    'purple', 'pink', 'moccasin', 'lightgreen', 'darkcyan', 'powderblue', 'mediumblue', 'slateblue', 'crimson', 
+                    'midnightblue', 'violet', 'darkred', 'coral', 'green', 'paleturquoise', 'dodgerblue', 'cornflowerblue', 
+                    'purple', 'pink', 'moccasin', 'lightgreen', 'darkcyan', 'powderblue', 'mediumblue', 'slateblue', 'red', 
                     'tan', 'mediumspringgreen', 'aquamarine', 'slategray', 'darkblue', 'indigo', 'indianred', 'darkkhaki', 'darkolivegreen', 
-                    'turquoise', 'skyblue', 'royalblue', 'blueviolet', 'brown', 'blanchedalmond', 'mediumseagreen', 'darkslategrey', 'cadetblue', 
+                    'turquoise', 'skyblue', 'blue', 'blueviolet', 'brown', 'blanchedalmond', 'mediumseagreen', 'darkslategrey', 'cadetblue', 
                     'hotpink', 'palevioletred', 'navajowhite', 'darkseagreen', 'mediumturquoise', 'deepskyblue', 'thistle', 'firebrick', 'chocolate', 
                     'lawngreen', 'teal', 'lightskyblue', 'mediumslateblue', 'maroon', 'goldenrod', 'limegreen', 'cyan', 'lightslategrey', 'mediumpurple', 
                     'rosybrown', 'saddlebrown', 'olivedrab', 'lightseagreen', 'lightsteelblue', 'deeppink', 'darksalmon', 'olive', 'darkturquoise', 

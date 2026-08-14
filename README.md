@@ -43,7 +43,7 @@
 | 1.8.24 | Fixed PROCAR bug; code generator in development |
 | 1.8.25 | README update |
 | 1.9.3  | Add divide_by_n_of_atoms & save plot as .ipynb script |
-| 1.9.4  | Add shading config in graph style |
+| 1.9.5  | Add shading config in graph style & Change order of color |
 
 ---
 
