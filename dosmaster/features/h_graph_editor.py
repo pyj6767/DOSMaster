@@ -137,6 +137,18 @@ def Graph_Editor(data_dict, graph_config):
                 else:
                     graph_config[key_list[int(graph_index_input)-1]] = True
                     break
+
+        elif key_list[int(graph_index_input)-1] == 'shading':
+            while True:
+                a_input = input('True(1, default) or False(2) : ')
+                if a_input == 'q':
+                    break
+                elif a_input == '2':
+                    graph_config[key_list[int(graph_index_input)-1]] = False
+                    break
+                else:
+                    graph_config[key_list[int(graph_index_input)-1]] = True
+                    break
                 
         elif key_list[int(graph_index_input)-1] == 'legend_name':
             while True:

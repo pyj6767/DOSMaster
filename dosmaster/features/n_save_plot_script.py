@@ -198,6 +198,7 @@ def Save_Plot_Script(data_dict, graph_config):
         "figuresize = {figuresize}\n"
         "xlim = {xlim}\n"
         "ylim = {ylim}\n"
+        "shading = {shading}\n"
         "\n"
         "plt.figure(figsize=(figuresize[0], figuresize[1]))\n"
         "\n"
@@ -217,6 +218,12 @@ def Save_Plot_Script(data_dict, graph_config):
         "            plt.plot(energy, -down_df[col], color=colors[i], linewidth=line_width, label=labels[i])\n"
         "        else:\n"
         "            plt.plot(energy, down_df[col], color=colors[i], linewidth=line_width)\n"
+        "\n"
+        "# Shade the area between the x-axis and each DOS curve\n"
+        "if shading:\n"
+        "    ax = plt.gca()\n"
+        "    for line in ax.get_lines():\n"
+        "        ax.fill_between(line.get_xdata(), 0, line.get_ydata(), color=line.get_color(), alpha=0.3)\n"
         "\n"
         "plt.title('DOS', fontsize={title_fontsize})\n"
         "plt.xlabel('Energy(eV)', fontsize={axis_label_fontsize})\n"
@@ -240,6 +247,7 @@ def Save_Plot_Script(data_dict, graph_config):
              figuresize=repr(list(graph_config['figuresize'])),
              xlim=repr(graph_config['xlim']),
              ylim=repr(graph_config['ylim']),
+             shading=graph_config.get('shading', True),
              title_fontsize=graph_config['title_fontsize'],
              axis_label_fontsize=graph_config['axis_label_fontsize'],
              ticks_fontsize=graph_config['ticks_fontsize'],

@@ -43,6 +43,7 @@
 | 1.8.24 | Fixed PROCAR bug; code generator in development |
 | 1.8.25 | README update |
 | 1.9.3  | Add divide_by_n_of_atoms & save plot as .ipynb script |
+| 1.9.4  | Add shading config in graph style |
 
 ---
 
@@ -81,6 +82,7 @@
    | 20 | `ylim_optimization` | Enable automatic y-axis limit optimization |
    | 21 | `shift_x_axis` | Shift the x-axis by a fixed energy offset |
    | 22 | `smearing` | Apply Gaussian smearing to smooth the DOS curves |
+   | 23 | `shading` | Fill the area between the x-axis and each DOS curve with a lighter tint of its color (default on) |
 9. **Axis Optimization** — Automatically optimize the y-axis limits to fit the current DOS.
 10. **Import Global Custom Setting** — Load your personal graph settings from the package folder.
 11. **Save Global Custom Setting** — Save your personal graph settings to the package folder.

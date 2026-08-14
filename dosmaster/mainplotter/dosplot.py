@@ -148,6 +148,12 @@ def DOSplot(data_dict, graph_config):
                          linewidth=graph_config['line_width'], label = graph_config['legend_name'][index])
                 data_list_down=data_collection(data_list_down, is_save, graph_config, energy, dos_down_sum)
             
+    # Shade the area between the x-axis and each DOS curve with a lighter tint of its color.
+    if graph_config.get('shading', True) == True:
+        ax = plt.gca()
+        for line in ax.get_lines():
+            ax.fill_between(line.get_xdata(), 0, line.get_ydata(), color=line.get_color(), alpha=0.3)
+
     plt.title('DOS', fontsize=graph_config['title_fontsize'])
     plt.xlabel('Energy(eV)', fontsize=graph_config['axis_label_fontsize'])
     plt.ylabel('DOS', fontsize=graph_config['axis_label_fontsize'])

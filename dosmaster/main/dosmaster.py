@@ -94,7 +94,8 @@ def main():
                     'ylim_optimization' : False,
                     'shift_x_axis' : 0,
                     'smearing' : 0.0,
-                    'divide_by_atom' : {}
+                    'divide_by_atom' : {},
+                    'shading' : True
                     }
     
     StartMessage()
